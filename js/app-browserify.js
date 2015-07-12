@@ -23,3 +23,7 @@ var Promise = require('es6-promise').Promise
     // new Router()
 // }
 
+function test(){
+	return console.log('warning warning!!!');
+}
+test()

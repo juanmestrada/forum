@@ -95,3 +95,433 @@ img {
 /**
  * YOUR CODE HERE
  */
+ @media screen and (min-width: 801px){
+
+body{
+    background: linear-gradient(#292929, #242424);
+}
+.container{
+    border: 2px solid red;
+    overflow: auto;
+    margin: auto;
+    margin-top: 130px;
+    background-color: rgb(48,48,48);
+    width: 98%;
+    height: 1500px;
+    border-radius: 10px;
+    padding: .5em;
+    
+
+}
+header{
+    position: fixed; 
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    background: linear-gradient(#595454, #242424);
+    height: 6em;
+    
+}
+form{
+    width: 90%;
+    margin: auto;
+}
+
+input{
+        height: 1.5em;
+        width: 100%;
+        margin:auto;
+        color: black;
+        padding-left: 1em;
+        outline-style: none;
+}
+
+h3{
+    display: block;
+    font-size: 1em;
+    color:red;
+    
+}
+ul{
+    float: left;
+    list-style: none;
+    width: 100%;
+    margin: 0;
+
+}
+li{
+    float: left;
+    font-size: 2em;
+    
+
+}
+
+.menu{
+    border: 2px solid yellow;
+    background-image: url(../images/menu.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 5%;
+    height: 50px;
+    padding: 0;
+}
+
+.profile{
+    width: 15%;
+    width: 15%;
+    border: 2px solid yellow;
+    background-image: url(../images/profile.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-size: contain;
+    width: 15%;
+    height: 50px;
+}
+
+.forum-title{
+    width: 55%;
+}
+
+.notifications{
+    float: right;
+    margin-right: 50px;
+    width: 15%;
+    border: 2px solid yellow;
+    background-image: url(../images/notification.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-size: contain;
+    width: 5%;
+    height: 50px;
+}
+.forum-container{
+    float:left;
+    width: 70%;
+    height: auto;
+    color: white;
+    border:2px solid orange;
+    background: linear-gradient(#292929, #242424);
+
+    border-radius: 5px;
+ }
+
+ .forum-column{
+    border: 2px solid green;
+    /*background-image: url(http://kenstonlocal.org/kenston/wp-content/uploads/2014/12/css_code.jpg);
+    background-size: cover;*/
+    overflow: hidden;
+    height: 50px;
+    margin-bottom: 5px;
+
+ }
+
+ span{
+    float: right;
+
+ }
+
+.user-picture{
+    display: block;
+    float: left;
+    width: 50px;
+    height: 50px;
+    border-right: 2px solid yellow;
+    margin:0; 
+    padding: 8px;
+}   
+img{
+    border-radius: 50%;
+    /*position: relative;
+    top: 50%;
+    bottom: 50%;*/
+}
+
+.forum-question{
+    float: left;
+    width: 73%;
+    padding: 3px;
+}
+a{
+    text-decoration: none;
+    color: red;
+}
+
+p{
+    display: none;
+    border: 2px solid red;
+    height: 80px;
+    font-size: 1.5em;
+    overflow:hidden;
+    text-overflow:ellipsis;
+
+}
+
+.last-post{
+    display: inline-block;
+    width:10%;
+    height: 50px;
+    border:2px solid white;
+    font-size: 13px;
+    padding: 0;
+
+}
+
+.forum-replies{
+    display: inline-block;
+    width:10%;
+    height: 50px;
+    border:2px solid white;
+    font-size: 13px;
+    padding: 0;
+}
+
+.user-earnings-wrapper{
+    
+    border: 2px solid yellow;
+    width:25%;
+    float: right;
+    
+}
+
+h6{
+    background-color: rgb(175,0,0);
+}
+
+}
+
+/* Styles for screens upto 800px */
+@media screen and (max-width: 800px){
+
+header{
+    position: fixed; 
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    background: linear-gradient(#292929, #242424);;
+    height: 6em;
+    
+}
+
+form{
+    width: 90%;
+    margin: auto;
+}
+input{
+        height: 1.5em;
+        width: 100%;
+        margin:auto;
+        color: black;
+        padding-left: 1em;
+        outline-style: none;
+}
+
+h3{
+    color:white;
+    
+}
+ul{
+    float: left;
+    list-style: none;
+    width: 100%;
+    margin: 0;
+
+}
+li{
+    float: left;
+    font-size: 36px; 
+
+}
+.material-icons.md-36{
+    color:white;
+    font-size: 36px; 
+    
+}
+.menu{
+    width: 15%;
+}
+
+.profile{
+    width: 15%;
+}
+
+.forum-title{
+    width: 55%;
+}
+
+.notifications{
+    width: 15%;
+}
+.forum-container{
+    width: 98%;
+    margin: auto;
+    margin-top: 100px;
+    padding: .5em;
+    color: white;
+    
+ }
+
+ .forum-column{
+    border-bottom: 2px solid #292929;
+    background-image: url(http://kenstonlocal.org/kenston/wp-content/uploads/2014/12/css_code.jpg);
+    background-size: cover;
+    overflow: auto;
+    padding: .5em;
+ }
+
+ span{
+    float: right;
+
+ }
+
+.user-picture{
+    float: left;
+    width: 150px;
+    padding: .5em;
+
+}   
+img{
+    position: relative;
+    top: 50%;
+    bottom: 50%;
+}
+p{
+    border: 2px solid red;
+    height: 80px;
+    font-size: 1.5em;
+    overflow:hidden;
+    text-overflow:ellipsis;
+
+}
+
+}
+
+/* Styles for screens upto 480px */
+@media screen and (max-width: 480px){
+
+header{
+    position: fixed; 
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    background: linear-gradient(#292929, #242424);
+    height: 6em;
+    
+}
+
+form{
+    width: 90%;
+    margin: auto;
+}
+input{
+        height: 1.5em;
+        width: 100%;
+        margin:auto;
+        color: black;
+        padding-left: 1em;
+        outline-style: none;
+}
+
+h3{
+    font-size: 1em;
+    color:white;
+    
+}
+ul{
+    float: left;
+    list-style: none;
+    width: 100%;
+    margin: 0;
+
+}
+li{
+    float: left;
+    font-size: 36px; 
+
+}
+
+.menu{
+    border: 2px solid yellow;
+    background-image: url(../images/menu.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+}
+
+.profile{
+    
+
+    border: 2px solid yellow;
+    background-image: url(../images/profile.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-size: contain;
+    width: 50px;
+    height: 50px;
+}
+
+.forum-title{
+    width: 30%;
+}
+
+.notifications{
+    float: right;
+    margin-right: 50px;
+    
+    border: 2px solid yellow;
+    background-image: url(../images/notification.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-size: contain;
+    width: 50px;
+    height: 50px;
+}
+.forum-container{
+    width: 98%;
+    margin: auto;
+    margin-top: 100px;
+    padding: .5em;
+    color: white;
+    
+ }
+
+ .forum-column{
+    height: 150px;
+    border-bottom: 2px solid #292929;
+    background-image: url(http://kenstonlocal.org/kenston/wp-content/uploads/2014/12/css_code.jpg);
+    background-size: cover;
+    
+    padding: .5em;
+ }
+
+ span{
+    float: right;
+
+ }
+
+.user-picture{
+    float: left;
+    width: 25%;
+    height: auto;
+    padding: .5em;
+    border:2px solid yellow;
+
+}   
+img{
+    position: relative;
+    top: 50%;
+    bottom: 50%;
+}
+p{
+    border: 2px solid red;
+    height: 60px;
+    font-size: 1em;
+    margin: 0;
+    text-overflow:ellipsis;
+
+}
+}
+
+
+
