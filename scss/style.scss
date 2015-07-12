@@ -113,6 +113,7 @@ body{
     
 
 }
+
 header{
     position: fixed; 
     top: 0;
@@ -120,40 +121,34 @@ header{
     z-index: 100;
     background: linear-gradient(#595454, #242424);
     height: 6em;
-    
-}
-form{
-    width: 90%;
-    margin: auto;
-}
-
-input{
-        height: 1.5em;
+    ul{
+        float: left;
+        list-style: none;
         width: 100%;
-        margin:auto;
-        color: black;
-        padding-left: 1em;
-        outline-style: none;
-}
+        margin: 0;
+        li{
+            float: left;
+            font-size: 2em;
+            
 
-h3{
-    display: block;
-    font-size: 1em;
-    color:red;
-    
-}
-ul{
-    float: left;
-    list-style: none;
-    width: 100%;
-    margin: 0;
+        }
+    }
 
-}
-li{
-    float: left;
-    font-size: 2em;
-    
+    form{
+        width: 90%;
+        margin: auto;
 
+        input{
+            height: 1.5em;
+            width: 100%;
+            margin:auto;
+            color: black;
+            padding-left: 1em;
+            outline-style: none;
+            border-radius:20px;
+        }
+
+    }
 }
 
 .menu{
@@ -180,6 +175,8 @@ li{
 
 .forum-title{
     width: 55%;
+    font-size: 2em;
+    color: white;
 }
 
 .notifications{
@@ -196,7 +193,502 @@ li{
 }
 .forum-container{
     float:left;
-    width: 70%;
+    width: 75%;
+    height: auto;
+    color: white;
+    border:2px solid orange;
+    background: linear-gradient(#292929, #242424);
+
+    border-radius: 5px;
+ }
+
+ .forum-column{
+    border: 2px solid green;
+    /*background-image: url(http://kenstonlocal.org/kenston/wp-content/uploads/2014/12/css_code.jpg);
+    background-size: cover;*/
+    background-color: rgb(35,35,35);
+    overflow: hidden;
+    height: 50px;
+    margin-bottom: 5px;
+
+ }
+
+ /*span{
+    float: right;
+    color: yellow;
+ }*/
+
+.user-picture{
+    display: block;
+    float: left;
+    width: 50px;
+    height: 50px;
+    border-right: 2px solid yellow;
+    margin:0; 
+    padding: 8px;
+    img{
+        border-radius: 50%;
+        /*position: relative;
+        top: 50%;
+        bottom: 50%;*/
+    }
+}   
+
+
+.forum-question{
+    float:left;
+    width: 73%;
+    padding: 3px;
+    h3{
+        display: block;
+        font-size: 1em;
+        color:white;
+         a{
+            text-decoration: none;
+            color: red;
+        }
+    }
+    p{
+        display: none;
+        border: 2px solid red;
+        height: 80px;
+        font-size: 1.5em;
+        overflow:hidden;
+        text-overflow:ellipsis;
+
+    }
+    
+}
+
+ul{
+    margin:0;
+    a{
+        margin-left: 5px;
+        text-decoration: none;
+        color: white;
+    }
+}
+
+.forum-replies{
+    display: inline-block;
+    width:10%;
+    height: 50px;
+    border:2px solid white;
+    font-size: 13px;
+    padding: 0;
+    li{
+        list-style: none;
+        text-decoration: none;
+        font-size: 12px;
+    }
+}
+
+.last-post{
+    display: inline-block;
+    width:10%;
+    height: 50px;
+    border:2px solid white;
+    font-size: 13px;
+    padding: 0;
+    li{
+        list-style: none;
+        text-decoration: none;
+        font-size: 12px;
+    }
+}
+
+
+
+.user-earnings-wrapper{
+    
+    border: 2px solid white;
+    width:20%;
+    float: right;
+    border-radius:10px;
+    
+    h6{
+        color: white;
+        background-color: rgb(175,0,0);
+        line-height: 2em;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .seller-earnings{
+        border:2px solid yellow;
+        height: 30px;
+        img{
+            display: block;
+            float: left;
+            width: 10%;
+        }
+        p{
+            margin:0;
+            width: 60%;
+            font-size: 12px;
+            color: white;
+            .user{
+                float: left;
+            }
+            .user-amount{
+                float:right;
+                width: 20px;
+                color:red;
+            }
+        } 
+    }
+
+}
+
+
+}
+
+/* Styles for screens upto 800px */
+@media screen and (max-width: 800px){
+
+body{
+    background: linear-gradient(#292929, #242424);
+}
+.container{
+    border: 2px solid red;
+    overflow: auto;
+    margin: auto;
+    margin-top: 130px;
+    background-color: rgb(48,48,48);
+    width: 98%;
+    height: 1500px;
+    border-radius: 10px;
+    padding: .5em;
+    
+
+}
+
+header{
+    position: fixed; 
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    background: linear-gradient(#595454, #242424);
+    height: 6em;
+    ul{
+        float: left;
+        list-style: none;
+        width: 100%;
+        margin: 0;
+        li{
+            float: left;
+            font-size: 2em;
+            
+
+        }
+    }
+
+    form{
+        width: 90%;
+        margin: auto;
+
+        input{
+            height: 1.5em;
+            width: 100%;
+            margin:auto;
+            color: black;
+            padding-left: 1em;
+            outline-style: none;
+            border-radius:20px;
+        }
+
+    }
+}
+
+.menu{
+    border: 2px solid yellow;
+    background-image: url(../images/menu.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 5%;
+    height: 50px;
+    padding: 0;
+}
+
+.profile{
+    width: 15%;
+    width: 15%;
+    border: 2px solid yellow;
+    background-image: url(../images/profile.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-size: contain;
+    width: 15%;
+    height: 50px;
+}
+
+.forum-title{
+    width: 55%;
+    font-size: 2em;
+    color: white;
+}
+
+.notifications{
+    float: right;
+    margin-right: 50px;
+    width: 15%;
+    border: 2px solid yellow;
+    background-image: url(../images/notification.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-size: contain;
+    width: 5%;
+    height: 50px;
+}
+.forum-container{
+    float:left;
+    width: 75%;
+    height: auto;
+    color: white;
+    border:2px solid orange;
+    background: linear-gradient(#292929, #242424);
+
+    border-radius: 5px;
+ }
+
+ .forum-column{
+    border: 2px solid green;
+    /*background-image: url(http://kenstonlocal.org/kenston/wp-content/uploads/2014/12/css_code.jpg);
+    background-size: cover;*/
+    background-color: rgb(35,35,35);
+    overflow: hidden;
+    height: 50px;
+    margin-bottom: 5px;
+
+ }
+
+ /*span{
+    float: right;
+    color: yellow;
+ }*/
+
+.user-picture{
+    display: block;
+    float: left;
+    width: 50px;
+    height: 50px;
+    border-right: 2px solid yellow;
+    margin:0; 
+    padding: 8px;
+    img{
+        border-radius: 50%;
+        /*position: relative;
+        top: 50%;
+        bottom: 50%;*/
+    }
+}   
+
+
+.forum-question{
+    float:left;
+    width: 73%;
+    padding: 3px;
+    h3{
+        display: block;
+        font-size: 1em;
+        color:white;
+         a{
+            text-decoration: none;
+            color: red;
+        }
+    }
+    p{
+        display: none;
+        border: 2px solid red;
+        height: 80px;
+        font-size: 1.5em;
+        overflow:hidden;
+        text-overflow:ellipsis;
+
+    }
+    
+}
+
+ul{
+    margin:0;
+    a{
+        margin-left: 5px;
+        text-decoration: none;
+        color: white;
+    }
+}
+
+.forum-replies{
+    display: inline-block;
+    width:10%;
+    height: 50px;
+    border:2px solid white;
+    font-size: 13px;
+    padding: 0;
+    li{
+        list-style: none;
+        text-decoration: none;
+        font-size: 12px;
+    }
+}
+
+.last-post{
+    display: inline-block;
+    width:10%;
+    height: 50px;
+    border:2px solid white;
+    font-size: 13px;
+    padding: 0;
+    li{
+        list-style: none;
+        text-decoration: none;
+        font-size: 12px;
+    }
+}
+
+
+
+.user-earnings-wrapper{
+    
+    border: 2px solid white;
+    width:20%;
+    float: right;
+    border-radius:10px;
+    
+    h6{
+        color: white;
+        background-color: rgb(175,0,0);
+        line-height: 2em;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .seller-earnings{
+        border:2px solid yellow;
+        height: 30px;
+        img{
+            display: block;
+            float: left;
+            width: 10%;
+        }
+        p{
+            margin:0;
+            width: 60%;
+            font-size: 12px;
+            color: white;
+            .user{
+                float: left;
+            }
+            .user-amount{
+                float:right;
+                width: 20px;
+                color:red;
+            }
+        } 
+    }
+
+}
+
+
+
+}
+
+/* Styles for screens upto 480px */
+@media screen and (max-width: 480px){
+
+
+body{
+    background: linear-gradient(#292929, #242424);
+}
+.container{
+    border: 2px solid red;
+    overflow: auto;
+    margin: auto;
+    margin-top: 130px;
+    background-color: rgb(48,48,48);
+    width: 100%;
+    height: 1500px;
+    padding:0;
+}
+
+header{
+    position: fixed; 
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    background: linear-gradient(#595454, #242424, .2);
+    height: 6em;
+    ul{
+        float: left;
+        list-style: none;
+        width: 100%;
+        margin: 0;
+        li{
+            float: left;
+            font-size: 2em;
+            
+
+        }
+    }
+
+    form{
+        width: 90%;
+        margin: auto;
+
+        input{
+            height: 1.5em;
+            width: 90%;
+            margin:auto;
+            color: black;
+         
+            outline-style: none;
+            border-radius:20px;
+        }
+
+    }
+}
+
+.menu{
+    border: 2px solid yellow;
+    background-image: url(../images/menu.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+}
+
+.profile{
+    border: 2px solid yellow;
+    background-image: url(../images/profile.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-size: contain;
+    width: 15%;
+    height: 50px;
+}
+
+.forum-title{
+    margin-left: 5px;
+    width: 40%;
+    font-size: 2em;
+    color: white;
+}
+
+.notifications{
+    float: right;
+    margin-right: 40px;
+    border: 2px solid yellow;
+    background-image: url(../images/notification.png);
+     background-repeat: no-repeat;
+    background-size: cover;
+    background-size: contain;
+    width: 50px;
+    height: 50px;
+}
+.forum-container{
+    float:left;
+    width: 100%;
     height: auto;
     color: white;
     border:2px solid orange;
@@ -215,312 +707,95 @@ li{
 
  }
 
- span{
+ /*span{
     float: right;
-
- }
+    color: yellow;
+ }*/
 
 .user-picture{
     display: block;
     float: left;
-    width: 50px;
-    height: 50px;
-    border-right: 2px solid yellow;
+    width: 40px;
+    height: 40px;
+    border-right: 1px solid yellow;
     margin:0; 
-    padding: 8px;
+    padding: 1px;
+    img{
+        border-radius: 50%;
+        /*position: relative;
+        top: 50%;
+        bottom: 50%;*/
+    }
 }   
-img{
-    border-radius: 50%;
-    /*position: relative;
-    top: 50%;
-    bottom: 50%;*/
-}
+
 
 .forum-question{
-    float: left;
+    float:left;
     width: 73%;
     padding: 3px;
-}
-a{
-    text-decoration: none;
-    color: red;
-}
+    h3{
+        display: block;
+        font-size: 13px;
+        color:white;
+         a{
+            text-decoration: none;
+            color: red;
+        }
+    }
+    p{
+        display: none;
+        border: 2px solid red;
+        height: 80px;
+        font-size: 1.5em;
+        overflow:hidden;
+        text-overflow:ellipsis;
 
-p{
-    display: none;
-    border: 2px solid red;
-    height: 80px;
-    font-size: 1.5em;
-    overflow:hidden;
-    text-overflow:ellipsis;
-
-}
-
-.last-post{
-    display: inline-block;
-    width:10%;
-    height: 50px;
-    border:2px solid white;
-    font-size: 13px;
-    padding: 0;
+    }
 
 }
 
-.forum-replies{
-    display: inline-block;
-    width:10%;
-    height: 50px;
-    border:2px solid white;
-    font-size: 13px;
-    padding: 0;
+ul{
+    list-style: none;
+    margin:0;
+    .forum-replies{
+        display: inline-block;
+        width:10%;
+        height: 50px;
+        border:2px solid white;
+        font-size: 13px;
+        padding: 0;
+        li{
+            text-decoration: none;
+            font-size: 12px;
+        }
+    }
+
+    .last-post{
+        display: inline-block;
+        width:10%;
+        height: 50px;
+        border:2px solid white;
+        font-size: 13px;
+        padding: 0;
+
+    }
 }
+
+
+
 
 .user-earnings-wrapper{
     
-    border: 2px solid yellow;
-    width:25%;
-    float: right;
-    
-}
-
-h6{
-    background-color: rgb(175,0,0);
-}
+    display:none;
+    h6{
+        background-color: rgb(175,0,0);
+        line-height: 2em;
+        vertical-align: center;
+    }
 
 }
 
-/* Styles for screens upto 800px */
-@media screen and (max-width: 800px){
 
-header{
-    position: fixed; 
-    top: 0;
-    width: 100%;
-    z-index: 100;
-    background: linear-gradient(#292929, #242424);;
-    height: 6em;
-    
-}
-
-form{
-    width: 90%;
-    margin: auto;
-}
-input{
-        height: 1.5em;
-        width: 100%;
-        margin:auto;
-        color: black;
-        padding-left: 1em;
-        outline-style: none;
-}
-
-h3{
-    color:white;
-    
-}
-ul{
-    float: left;
-    list-style: none;
-    width: 100%;
-    margin: 0;
-
-}
-li{
-    float: left;
-    font-size: 36px; 
-
-}
-.material-icons.md-36{
-    color:white;
-    font-size: 36px; 
-    
-}
-.menu{
-    width: 15%;
-}
-
-.profile{
-    width: 15%;
-}
-
-.forum-title{
-    width: 55%;
-}
-
-.notifications{
-    width: 15%;
-}
-.forum-container{
-    width: 98%;
-    margin: auto;
-    margin-top: 100px;
-    padding: .5em;
-    color: white;
-    
- }
-
- .forum-column{
-    border-bottom: 2px solid #292929;
-    background-image: url(http://kenstonlocal.org/kenston/wp-content/uploads/2014/12/css_code.jpg);
-    background-size: cover;
-    overflow: auto;
-    padding: .5em;
- }
-
- span{
-    float: right;
-
- }
-
-.user-picture{
-    float: left;
-    width: 150px;
-    padding: .5em;
-
-}   
-img{
-    position: relative;
-    top: 50%;
-    bottom: 50%;
-}
-p{
-    border: 2px solid red;
-    height: 80px;
-    font-size: 1.5em;
-    overflow:hidden;
-    text-overflow:ellipsis;
-
-}
-
-}
-
-/* Styles for screens upto 480px */
-@media screen and (max-width: 480px){
-
-header{
-    position: fixed; 
-    top: 0;
-    width: 100%;
-    z-index: 100;
-    background: linear-gradient(#292929, #242424);
-    height: 6em;
-    
-}
-
-form{
-    width: 90%;
-    margin: auto;
-}
-input{
-        height: 1.5em;
-        width: 100%;
-        margin:auto;
-        color: black;
-        padding-left: 1em;
-        outline-style: none;
-}
-
-h3{
-    font-size: 1em;
-    color:white;
-    
-}
-ul{
-    float: left;
-    list-style: none;
-    width: 100%;
-    margin: 0;
-
-}
-li{
-    float: left;
-    font-size: 36px; 
-
-}
-
-.menu{
-    border: 2px solid yellow;
-    background-image: url(../images/menu.png);
-    background-repeat: no-repeat;
-    background-size: contain;
-    width: 50px;
-    height: 50px;
-    padding: 0;
-}
-
-.profile{
-    
-
-    border: 2px solid yellow;
-    background-image: url(../images/profile.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-size: contain;
-    width: 50px;
-    height: 50px;
-}
-
-.forum-title{
-    width: 30%;
-}
-
-.notifications{
-    float: right;
-    margin-right: 50px;
-    
-    border: 2px solid yellow;
-    background-image: url(../images/notification.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-size: contain;
-    width: 50px;
-    height: 50px;
-}
-.forum-container{
-    width: 98%;
-    margin: auto;
-    margin-top: 100px;
-    padding: .5em;
-    color: white;
-    
- }
-
- .forum-column{
-    height: 150px;
-    border-bottom: 2px solid #292929;
-    background-image: url(http://kenstonlocal.org/kenston/wp-content/uploads/2014/12/css_code.jpg);
-    background-size: cover;
-    
-    padding: .5em;
- }
-
- span{
-    float: right;
-
- }
-
-.user-picture{
-    float: left;
-    width: 25%;
-    height: auto;
-    padding: .5em;
-    border:2px solid yellow;
-
-}   
-img{
-    position: relative;
-    top: 50%;
-    bottom: 50%;
-}
-p{
-    border: 2px solid red;
-    height: 60px;
-    font-size: 1em;
-    margin: 0;
-    text-overflow:ellipsis;
-
-}
 }
 
 
