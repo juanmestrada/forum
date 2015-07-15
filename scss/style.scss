@@ -95,7 +95,45 @@ img {
 /**
  * YOUR CODE HERE
  */
+
+
+.login-wrapper{
+    width: 60%;
+    
+    margin:0 auto;
+    margin-top: 200px;
+    border-radius:10px;
+    background-color: white;
+    h5{
+        color:white;
+        padding: 10px;
+        border-radius:10px 10px 0 0;
+        background-color: rgb(48,48,48);
+    }
+    input{
+        color:red;
+        width: 80%;
+        margin: 0 auto;
+        border-radius: 10px;
+        padding: 5px;
+        margin-bottom: 20px;
+        margin-left: 10%;
+
+        
+    }
+   input[type='button']{
+            background-color:blue;
+            margin:auto;
+            color: green;
+        }
+
+}
+
  @media screen and (min-width: 801px){
+
+
+
+
 
 body{
     background-image: url(../images/nightsky.jpg);

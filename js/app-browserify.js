@@ -32,16 +32,17 @@ $('document').ready(function() {
 
 });
 }
-})
+});
 
 
 
 
 /* React */
 
-var Header = React.createClass({
+var NavBar = React.createClass({
 	render: function() {
 		return (
+			<div>
 			<header>
         <ul>
             <li className="menu"></li>
@@ -54,6 +55,7 @@ var Header = React.createClass({
             <input type="search" placeholder="search"></input>
         </form>
     </header>
+    </div>
 		)
 	}
 })
@@ -90,9 +92,9 @@ var ForumColumn = React.createClass({
 var ForumContainer = React.createClass({
 	render: function() {
 		return (
-
-			 <div className="container">
-			 <Header></Header>
+			<div>
+			<NavBar></NavBar>
+			 <div className="container">	 
     	<div className="page-location"><span>Home > Page location</span></div>
     	<div className="new-thread"> + New Thread</div>
     	<div className="forum-container">
@@ -113,47 +115,52 @@ var ForumContainer = React.createClass({
             </div>
         </div>
     </div>
+    </div>
 		)
 	}
 })
 
 
-React.render(<ForumContainer></ForumContainer>, document.body);
-
-/* Router */
-/*var ParseRouter = Parse.Router.extend ({
-	routes: {
-		
-		'profile': 'profile',
-		'home' : 'home',
-		'logout': 'logout',
-		'*default': 'login'
-	}, 
-
-	login: () => {
-		React.render(<Login />, qs('.container'))
-	},
-
-	profile: () => {
-		if(!Parse.User.current()){
-			window.location.hash = '#login'
-			return
-		}
-		list.fetch()
-		React.render(<MyProfile data={list} />, qs('.container'))
-	},
-
-	home: () => {
-		React.render(<Profile data={model} />, qs('.container'))
-	},
-	logout: () => {
-		Parse.User.logOut()
-		React.render(<Login />, qs('.container'))
-	},
-	initialize: () => {
-		Parse.history.start()
+var Login = React.createClass({
+	render: function(){
+		return (
+			
+			<div className="login-wrapper">
+			<h5>Log In</h5>
+	    		<form>	
+	    			<input type="email" placeholder="email"></input>
+	    			<input type="password" placeholder="password"></input>
+	    			<input type="submit" value="Log In"></input>
+	    		</form>
+    		</div>
+    		
+		)
 	}
-
 })
 
-var router = new ParseRouter()*/
+/*React.render(<Login></Login>, document.body);*/
+
+
+
+/* Router */
+var ForumRouter = Backbone.Router.extend ({
+	routes: {
+		
+		'home' : 'ForumContainer',
+		'*default': 'Login'
+	}, 
+	ForumContainer: function() {
+		React.render(<ForumContainer></ForumContainer>, document.body);
+	},
+	Login: function() {
+		React.render(<Login></Login>, document.body);
+	},
+
+	initialize: function() {
+		Backbone.history.start();
+	}
+
+});
+
+
+var router = new ForumRouter();
