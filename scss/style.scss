@@ -98,7 +98,10 @@ img {
  @media screen and (min-width: 801px){
 
 body{
-    background: linear-gradient(#292929, #242424);
+    background-image: url(../images/nightsky.jpg);
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-attachment:fixed;
 }
 .container{
     border: 2px solid red;
@@ -113,14 +116,44 @@ body{
     
 
 }
+.page-location{
+    width: 100%;
+    color:#828282;
+    background-color: rgb(35,35,35);
+    padding:5px;
+    font-size: 12px;
+    line-height: 2.5em;
+    border-radius:5px;
+    margin-top:20px; 
+    margin-bottom: 20px;
+    overflow: auto;
+    span{
+        float: left;
+        width: 70%;
+    }
+    
+}
+
+.new-thread{
+        
+    width: 90px;
+    background-color:red;
+    border-radius:5px;
+    padding:5px;
+    font-size: .75em;
+    color: white;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
 
 header{
     position: fixed; 
     top: 0;
     width: 100%;
     z-index: 100;
-    background: linear-gradient(#595454, #242424);
-    height: 6em;
+    background: linear-gradient(to bottom, rgba(44,44,44,.8), rgba(0,0,0,1));
+    height: 4em;
+
     ul{
         float: left;
         list-style: none;
@@ -129,23 +162,27 @@ header{
         li{
             float: left;
             font-size: 2em;
-            
+            cursor: pointer;
 
         }
     }
 
     form{
+
         width: 90%;
         margin: auto;
 
         input{
+            float: left;
             height: 1.5em;
-            width: 100%;
+            width: 300px;
             margin:auto;
             color: black;
             padding-left: 1em;
             outline-style: none;
             border-radius:20px;
+            position:absolute;
+            
         }
 
     }
@@ -156,25 +193,23 @@ header{
     background-image: url(../images/menu.png);
     background-repeat: no-repeat;
     background-size: contain;
-    width: 5%;
+    width: 90px;
     height: 50px;
     padding: 0;
 }
 
 .profile{
-    width: 15%;
-    width: 15%;
     border: 2px solid yellow;
     background-image: url(../images/profile.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-size: contain;
-    width: 15%;
+    width: 90px;
     height: 50px;
 }
 
 .forum-title{
-    width: 55%;
+    width: 200px;
     font-size: 2em;
     color: white;
 }
@@ -191,9 +226,10 @@ header{
     width: 5%;
     height: 50px;
 }
+
 .forum-container{
     float:left;
-    width: 75%;
+    width: 78%;
     height: auto;
     color: white;
     border:2px solid orange;
@@ -202,6 +238,26 @@ header{
     border-radius: 5px;
  }
 
+.colum-header{
+    width: 100%;
+    color: white;
+    font-size: 11px;
+    height: 2em;
+    overflow: hidden;
+    padding:5px;
+    h6{
+        font-size: 11px;
+        float:left;
+        width:75%;
+        color: white;
+        margin:0;
+    }
+    span{
+         margin-left: 40px;  
+        width:15%;
+
+    }
+}
  .forum-column{
     border: 2px solid green;
     /*background-image: url(http://kenstonlocal.org/kenston/wp-content/uploads/2014/12/css_code.jpg);
@@ -237,7 +293,7 @@ header{
 
 .forum-question{
     float:left;
-    width: 73%;
+    width: 70%;
     padding: 3px;
     h3{
         display: block;
@@ -246,6 +302,7 @@ header{
          a{
             text-decoration: none;
             color: red;
+            font-size: 14px;
         }
     }
     p{
@@ -276,6 +333,7 @@ ul{
     border:2px solid white;
     font-size: 13px;
     padding: 0;
+    color:#828282;
     li{
         list-style: none;
         text-decoration: none;
@@ -290,10 +348,13 @@ ul{
     border:2px solid white;
     font-size: 13px;
     padding: 0;
+    margin-left: 5px;
+    color:#828282;
     li{
         list-style: none;
         text-decoration: none;
         font-size: 12px;
+        margin-left: 5px;
     }
 }
 
@@ -305,6 +366,7 @@ ul{
     width:20%;
     float: right;
     border-radius:10px;
+    background-color: rgb(35,35,35);
     
     h6{
         color: white;
@@ -312,30 +374,47 @@ ul{
         line-height: 2em;
         margin-bottom: 20px;
         text-align: center;
+        border-top:10px;
     }
 
     .seller-earnings{
         border:2px solid yellow;
-        height: 30px;
+        line-height: 1em;
+        overflow: auto;
+        padding:3px;
         img{
             display: block;
             float: left;
-            width: 10%;
+            width: 15px;
+            border-radius:50%;
         }
         p{
             margin:0;
-            width: 60%;
-            font-size: 12px;
+            
+            font-size: .6em;
             color: white;
-            .user{
-                float: left;
-            }
-            .user-amount{
-                float:right;
-                width: 20px;
-                color:red;
-            }
-        } 
+        }
+        span{
+            float: left;
+            color: white;
+            font-size: 12px;
+        }
+        .user{
+            margin-left: 3px;
+            float:left;
+            width: 60%;
+        }
+        .user-amount{
+            float:left;
+            width: 35px;
+            color:red;
+            span{
+            float: right;
+            color: white;
+        }
+
+        }
+
     }
 
 }
@@ -347,7 +426,10 @@ ul{
 @media screen and (max-width: 800px){
 
 body{
-    background: linear-gradient(#292929, #242424);
+    background-image: url(../images/nightsky.jpg);
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-attachment:fixed;
 }
 .container{
     border: 2px solid red;
@@ -362,14 +444,44 @@ body{
     
 
 }
+.page-location{
+    width: 100%;
+    color:#828282;
+    background-color: rgb(35,35,35);
+    padding:5px;
+    font-size: 12px;
+    line-height: 2.5em;
+    border-radius:5px;
+    margin-top:20px; 
+    margin-bottom: 20px;
+    overflow: auto;
+    span{
+        float: left;
+        width: 70%;
+    }
+    
+}
+
+.new-thread{
+        
+    width: 90px;
+    background-color:red;
+    border-radius:5px;
+    padding:5px;
+    font-size: .75em;
+    color: white;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
 
 header{
     position: fixed; 
     top: 0;
     width: 100%;
     z-index: 100;
-    background: linear-gradient(#595454, #242424);
-    height: 6em;
+    background: linear-gradient(to bottom, rgba(44,44,44,.8), rgba(0,0,0,1));
+    height: 4em;
+
     ul{
         float: left;
         list-style: none;
@@ -378,23 +490,27 @@ header{
         li{
             float: left;
             font-size: 2em;
-            
+            cursor: pointer;
 
         }
     }
 
     form{
+
         width: 90%;
         margin: auto;
 
         input{
+            float: left;
             height: 1.5em;
-            width: 100%;
+            width: 300px;
             margin:auto;
             color: black;
             padding-left: 1em;
             outline-style: none;
             border-radius:20px;
+            position:absolute;
+            
         }
 
     }
@@ -405,25 +521,23 @@ header{
     background-image: url(../images/menu.png);
     background-repeat: no-repeat;
     background-size: contain;
-    width: 5%;
+    width: 90px;
     height: 50px;
     padding: 0;
 }
 
 .profile{
-    width: 15%;
-    width: 15%;
     border: 2px solid yellow;
     background-image: url(../images/profile.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-size: contain;
-    width: 15%;
+    width: 90px;
     height: 50px;
 }
 
 .forum-title{
-    width: 55%;
+    width: 200px;
     font-size: 2em;
     color: white;
 }
@@ -440,9 +554,10 @@ header{
     width: 5%;
     height: 50px;
 }
+
 .forum-container{
     float:left;
-    width: 75%;
+    width: 78%;
     height: auto;
     color: white;
     border:2px solid orange;
@@ -451,6 +566,26 @@ header{
     border-radius: 5px;
  }
 
+.colum-header{
+    width: 100%;
+    color: white;
+    font-size: 11px;
+    height: 2em;
+    overflow: hidden;
+    padding:5px;
+    h6{
+        font-size: 11px;
+        float:left;
+        width:75%;
+        color: white;
+        margin:0;
+    }
+    span{
+         margin-left: 40px;  
+        width:15%;
+
+    }
+}
  .forum-column{
     border: 2px solid green;
     /*background-image: url(http://kenstonlocal.org/kenston/wp-content/uploads/2014/12/css_code.jpg);
@@ -486,7 +621,7 @@ header{
 
 .forum-question{
     float:left;
-    width: 73%;
+    width: 70%;
     padding: 3px;
     h3{
         display: block;
@@ -495,6 +630,7 @@ header{
          a{
             text-decoration: none;
             color: red;
+            font-size: 14px;
         }
     }
     p{
@@ -525,6 +661,7 @@ ul{
     border:2px solid white;
     font-size: 13px;
     padding: 0;
+    color:#828282;
     li{
         list-style: none;
         text-decoration: none;
@@ -539,10 +676,13 @@ ul{
     border:2px solid white;
     font-size: 13px;
     padding: 0;
+    margin-left: 5px;
+    color:#828282;
     li{
         list-style: none;
         text-decoration: none;
         font-size: 12px;
+        margin-left: 5px;
     }
 }
 
@@ -554,6 +694,7 @@ ul{
     width:20%;
     float: right;
     border-radius:10px;
+    background-color: rgb(35,35,35);
     
     h6{
         color: white;
@@ -561,30 +702,48 @@ ul{
         line-height: 2em;
         margin-bottom: 20px;
         text-align: center;
+        border-top:10px;
     }
 
     .seller-earnings{
         border:2px solid yellow;
-        height: 30px;
+        line-height: 1em;
+        overflow: auto;
+        padding:3px;
         img{
             display: block;
             float: left;
-            width: 10%;
+            width: 15px;
+            border-radius:50%;
         }
         p{
             margin:0;
-            width: 60%;
-            font-size: 12px;
+            
+            font-size: .6em;
             color: white;
-            .user{
-                float: left;
-            }
-            .user-amount{
-                float:right;
-                width: 20px;
-                color:red;
-            }
-        } 
+        }
+        span{
+            float: left;
+            color: white;
+            font-size: 12px;
+        }
+        .user{
+            margin-left: 3px;
+            float:left;
+            width: 60%;
+        }
+        .user-amount{
+            float:left;
+            width: 35px;
+            color:red;
+            span{
+                margin-left: 2px; 
+                float: right;
+                color: white;
+        }
+
+        }
+
     }
 
 }
@@ -696,6 +855,18 @@ header{
 
     border-radius: 5px;
  }
+
+.new-thread{
+        
+    width: 90px;
+    background-color:red;
+    border-radius:5px;
+    padding:5px;
+    font-size: .75em;
+    color: white;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
 
  .forum-column{
     border: 2px solid green;
