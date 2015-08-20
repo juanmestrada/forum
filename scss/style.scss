@@ -97,37 +97,85 @@ img {
  */
 
 
+
 .login-wrapper{
-    width: 60%;
-    
+    width: 40%;
     margin:0 auto;
-    margin-top: 200px;
-    border-radius:10px;
-    background-color: white;
+    margin-top: 100px;
+    
+    background-color: rgba(0,0,0, 0);
+    padding: 50px 0 90px 0;
     h5{
-        color:white;
-        padding: 10px;
-        border-radius:10px 10px 0 0;
-        background-color: rgb(48,48,48);
+        text-align: center;
+        color: white;
+        margin-top: 50px;
+        border-top:  1px solid gray;
+        padding-top:30px;
     }
     input{
-        color:red;
-        width: 80%;
+        color:white;
+        width: 100%;
         margin: 0 auto;
         border-radius: 10px;
         padding: 5px;
-        margin-bottom: 20px;
-        margin-left: 10%;
+        margin-bottom: 30px;
+        
+        font-size: 1.5em;
+        background-color: rgba(0,0,0, .5);
 
         
     }
-   input[type='button']{
-            background-color:blue;
-            margin:auto;
-            color: green;
+   input[type='submit']{
+            background: linear-gradient(#292929, #242424);
         }
 
 }
+
+
+
+.post-container{
+    width:75%;
+    background: linear-gradient(#292929, #242424);
+    
+    border-radius:10px;
+    margin-top: 50px;
+    padding:10px;
+    h5{
+        color:#828282;
+        margin-bottom: 0;
+    }
+    .post-title{
+        padding:10px;
+       
+    }
+    .post-content{
+        padding: 10px;
+    }
+    input{
+        display: block;
+        width:70%;
+        line-height: 1em;
+        padding: 5px;
+        background-color: rgb(48,48,48);
+        color:white;
+        
+    }
+    textarea{
+        margin-top: 20px;
+        resize:vertical;
+        background-color: rgb(48,48,48);
+        color:white;
+        padding:5px;
+    }
+    .post_content_button{
+        color:white;
+        width: 60px;
+        background-color: red;
+    }
+}
+
+
+
 
  @media screen and (min-width: 801px){
 
@@ -142,7 +190,7 @@ body{
     background-attachment:fixed;
 }
 .container{
-    border: 2px solid red;
+    /*border: 2px solid red;*/
     overflow: auto;
     margin: auto;
     margin-top: 130px;
@@ -172,17 +220,23 @@ body{
     
 }
 
+
 .new-thread{
         
     width: 90px;
     background-color:red;
     border-radius:5px;
     padding:5px;
-    font-size: .75em;
-    color: white;
+    
     margin-bottom: 20px;
     cursor: pointer;
+    a{
+        text-decoration: none;
+        font-size: .75em;
+        color: white;
+    }
 }
+
 
 header{
     position: fixed; 
@@ -270,7 +324,7 @@ header{
     width: 78%;
     height: auto;
     color: white;
-    border:2px solid orange;
+    /*border:2px solid orange;*/
     background: linear-gradient(#292929, #242424);
 
     border-radius: 5px;
@@ -283,6 +337,7 @@ header{
     height: 2em;
     overflow: hidden;
     padding:5px;
+    background-color: rgb(35,35,35);
     h6{
         font-size: 11px;
         float:left;
@@ -297,13 +352,13 @@ header{
     }
 }
  .forum-column{
-    border: 2px solid green;
+    /*border: 2px solid green;*/
     /*background-image: url(http://kenstonlocal.org/kenston/wp-content/uploads/2014/12/css_code.jpg);
     background-size: cover;*/
-    background-color: rgb(35,35,35);
+   background: linear-gradient(#292929, #242424);
     overflow: hidden;
     height: 50px;
-    margin-bottom: 5px;
+    
 
  }
 
@@ -317,7 +372,7 @@ header{
     float: left;
     width: 50px;
     height: 50px;
-    border-right: 2px solid yellow;
+    /*border-right: 2px solid yellow;*/
     margin:0; 
     padding: 8px;
     img{
@@ -331,7 +386,7 @@ header{
 
 .forum-question{
     float:left;
-    width: 70%;
+    width: 72%;
     padding: 3px;
     h3{
         display: block;
@@ -352,47 +407,53 @@ header{
         text-overflow:ellipsis;
 
     }
-    
+
 }
 
 ul{
     margin:0;
     a{
-        margin-left: 5px;
+        
         text-decoration: none;
         color: white;
     }
+
 }
 
 .forum-replies{
-    display: inline-block;
-    width:10%;
+    float: left;
+    width:90px;
     height: 50px;
     border:2px solid white;
     font-size: 13px;
-    padding: 0;
+    padding: 3px;
     color:#828282;
     li{
         list-style: none;
         text-decoration: none;
         font-size: 12px;
+        
     }
 }
 
 .last-post{
-    display: inline-block;
-    width:10%;
+    float: left;
+    width:90px;
     height: 50px;
     border:2px solid white;
     font-size: 13px;
-    padding: 0;
-    margin-left: 5px;
+    padding: 3px;
     color:#828282;
+    margin-top: 0;
     li{
         list-style: none;
         text-decoration: none;
         font-size: 12px;
-        margin-left: 5px;
+
+    }
+    .date{
+        color:white;
+        line-height: 1em;    
     }
 }
 
@@ -400,12 +461,16 @@ ul{
 
 .user-earnings-wrapper{
     
-    border: 2px solid white;
+    /*border: 2px solid white;*/
     width:20%;
-    float: right;
+  
     border-radius:10px;
     background-color: rgb(35,35,35);
-    
+    position:fixed;
+    top: 200px;
+    float: right;
+    right: 22px;
+    padding:5px;
     h6{
         color: white;
         background-color: rgb(175,0,0);
@@ -463,6 +528,23 @@ ul{
 /* Styles for screens upto 800px */
 @media screen and (max-width: 800px){
 
+.login-wrapper{
+    width: 70%;
+    margin:0 auto;
+    margin-top: 100px;
+    background-color: rgba(0,0,0, 0);
+    padding: 50px 0 90px 0;
+    h5{
+        text-align: center;
+        color: white;
+        margin-top: 50px;
+        border-top:  1px solid gray;
+        padding-top:30px;
+    }
+
+}
+
+
 body{
     background-image: url(../images/nightsky.jpg);
     background-repeat: no-repeat;
@@ -470,7 +552,7 @@ body{
     background-attachment:fixed;
 }
 .container{
-    border: 2px solid red;
+    
     overflow: auto;
     margin: auto;
     margin-top: 130px;
@@ -614,13 +696,13 @@ header{
     h6{
         font-size: 11px;
         float:left;
-        width:75%;
+        width:70%;
         color: white;
         margin:0;
     }
     span{
-         margin-left: 40px;  
-        width:15%;
+        margin-left: 25px;  
+        width:20%;
 
     }
 }
@@ -631,7 +713,7 @@ header{
     background-color: rgb(35,35,35);
     overflow: hidden;
     height: 50px;
-    margin-bottom: 5px;
+    
 
  }
 
@@ -659,11 +741,11 @@ header{
 
 .forum-question{
     float:left;
-    width: 70%;
+    width: 65%;
     padding: 3px;
     h3{
         display: block;
-        font-size: 1em;
+        font-size: .5em;
         color:white;
          a{
             text-decoration: none;
@@ -675,7 +757,7 @@ header{
         display: none;
         border: 2px solid red;
         height: 80px;
-        font-size: 1.5em;
+        font-size: .5em;
         overflow:hidden;
         text-overflow:ellipsis;
 
@@ -790,15 +872,38 @@ ul{
 
 }
 
+
+
+
 /* Styles for screens upto 480px */
 @media screen and (max-width: 480px){
 
+.login-wrapper{
+    width: 80%;
+    margin:0 auto;
+    margin-top: 100px;
+    
+    background-color: rgba(0,0,0, 0);
+    padding: 50px 0 90px 0;
+    h5{
+        font-size: 13px;
+        text-align: center;
+        color: white;
+        margin-top: 50px;
+        border-top:  1px solid gray;
+        padding-top:30px;
+    }   
+
+}
 
 body{
-    background: linear-gradient(#292929, #242424);
+     background-image: url(../images/nightsky.jpg);
+    background-repeat: no-repeat;
+    background-size:cover;
+   
 }
 .container{
-    border: 2px solid red;
+    /*border: 2px solid red;*/
     overflow: auto;
     margin: auto;
     margin-top: 130px;
@@ -893,7 +998,9 @@ header{
 
     border-radius: 5px;
  }
-
+.page-location{
+    visibility: hidden;
+}
 .new-thread{
         
     width: 90px;
@@ -911,10 +1018,31 @@ header{
     /*background-image: url(http://kenstonlocal.org/kenston/wp-content/uploads/2014/12/css_code.jpg);
     background-size: cover;*/
     overflow: hidden;
-    height: 50px;
-    margin-bottom: 5px;
+   
+
 
  }
+
+.colum-header{
+    width: 100%;
+    color: white;
+    font-size: 11px;
+    height: 2em;
+    overflow: hidden;
+    padding:5px;
+    h6{
+        font-size: 11px;
+        float:left;
+        width:70%;
+        color: white;
+        margin:0;
+    }
+    span{
+        margin-left: 15px;  
+        width:20%;
+
+    }
+}
 
  /*span{
     float: right;
@@ -924,8 +1052,7 @@ header{
 .user-picture{
     display: block;
     float: left;
-    width: 40px;
-    height: 40px;
+    width: 8%;
     border-right: 1px solid yellow;
     margin:0; 
     padding: 1px;
@@ -940,11 +1067,11 @@ header{
 
 .forum-question{
     float:left;
-    width: 73%;
+    width: 65%;
     padding: 3px;
     h3{
         display: block;
-        font-size: 13px;
+        font-size: 11px;
         color:white;
          a{
             text-decoration: none;
@@ -954,8 +1081,8 @@ header{
     p{
         display: none;
         border: 2px solid red;
-        height: 80px;
-        font-size: 1.5em;
+      
+        font-size: .7em;
         overflow:hidden;
         text-overflow:ellipsis;
 
@@ -966,6 +1093,12 @@ header{
 ul{
     list-style: none;
     margin:0;
+    p{
+        display: none;
+    }
+    .views{
+                display: none;
+            }
     .forum-replies{
         display: inline-block;
         width:10%;
@@ -976,17 +1109,20 @@ ul{
         li{
             text-decoration: none;
             font-size: 12px;
+
         }
     }
 
     .last-post{
-        display: inline-block;
-        width:10%;
-        height: 50px;
+        float:left;
+        width:8%;
+        
         border:2px solid white;
         font-size: 13px;
         padding: 0;
-
+        .date{
+            display: none;
+        }
     }
 }
 
@@ -995,8 +1131,12 @@ ul{
 
 .user-earnings-wrapper{
     
-    display:none;
+    position:absolute;
+    top: 150px;
+    width: 100%;
+    margin: auto;
     h6{
+        display: none;
         background-color: rgb(175,0,0);
         line-height: 2em;
         vertical-align: center;
