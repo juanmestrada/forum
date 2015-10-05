@@ -62,10 +62,12 @@ list.query = new Parse.Query(UserPost)
 
 
 
-function test(){
-	return console.log("Javascript is working!");
-}
-test()
+ console.log("Javascript is working!");
+
+
+
+
+
 
 /*jQuery Events*/
 $(window).resize(function(){
@@ -104,8 +106,9 @@ class NavBar extends React.Component{
 			<header>
         <ul>
             <li className="menu"></li>
-            <li className="profile"></li>
-            <li className="forum-title">Title</li>
+            <a href="#UserView"><li className="profile"></li></a>
+            <li className="forum-title">Test Forum</li>
+            <li className="user">{Parse.User.current().get("username")}</li>
             <li className="notifications"></li>
         </ul>
 
@@ -117,8 +120,8 @@ class NavBar extends React.Component{
 		)
 	}
 }
- /*Question*/
-class ForumColumn extends React.Component{
+ 
+class ForumPost extends React.Component{
 	constructor(props){
 		super(props)
 		this.rerender = () => this.forceUpdate()
@@ -138,8 +141,8 @@ class ForumColumn extends React.Component{
             		<li className="views"><p>Views:</p><a href="#">10</a></li>
             	</ul>
             	<ul className="last-post">
-            		<li className="author">{model.get('author')}</li>
-            		<li className="date">'12:00'</li>
+            		<li className="author">{model.get('user')}</li>
+            		<li className="date"><p>{model.get("createdAt")}</p></li>
             	</ul>
             </div>
 		)
@@ -170,7 +173,7 @@ class ForumView extends React.Component {
     	<div className="new-thread"><a href={`#post`} > + New Thread</a></div>
     	<div className="forum-container">
     		<div className="colum-header"><h6>Title/ Threads</h6><span>Replies</span><span>Last Post by</span></div>
-            	{this.props.data.map((model) => <ForumColumn data={model} />)}
+            	{this.props.data.map((model) => <ForumPost data={model} />)}
         </div>
 
 
@@ -199,7 +202,9 @@ class PostContent extends React.Component{
 	 _add(e){
         e.preventDefault()
         var input = React.findDOMNode(this.refs.title)
-        var model = new UserPost({ title: input.value })
+        var body = React.findDOMNode(this.refs.content)
+        var user= Parse.User.current();
+        var model = new UserPost({ title: input.value, content: body.value, user: user })
         var acl = new Parse.ACL()
         acl.setWriteAccess(Parse.User.current(), true)
         acl.setPublicReadAccess(true)
@@ -210,7 +215,9 @@ class PostContent extends React.Component{
     }
      _saveTitle(){
         var text = React.findDOMNode(this.refs.title).innerText
+        var content = React.findDOMNode(this.refs.content).innerText
         this.props.data.set('title', text)
+        this.props.data.set('content', content)
     }
 	render() {
 		return (
@@ -229,9 +236,9 @@ class PostContent extends React.Component{
 							<div className="post-content">
 								
 								
-									<textarea cols="90" rows="12" ref="content"></textarea>
+									<textarea id="post-question" ref="content" cols="90" rows="12"></textarea>
 									
-								<input className="post_content_button" type="button" value="Post"></input>
+								<input className="post_content_button" type="submit" value="Post"></input>
 								
 							</div>
 						</form>
@@ -251,11 +258,93 @@ class PostContent extends React.Component{
 
 }
 
+//Question view
+
+class PostView extends React.Component{
+	render() {
+		return(
+		<div>
+			<NavBar></NavBar>
+			<div className="container">
+				<div className="pv-container">
+					<div className="pv-da"><p>october 5, 2015</p></div>
+					<div className="pv-user-info"></div>
+					<div className="pv-user-post"></div>
+				</div>
+			
+			
+
+			</div>
+		</div>
+		)
+	}
+}
 
 
 
+//User View
 
+class UserView extends React.Component{
+	constructor(props){
+		super(props)
+	}
+	
+	_postimage(e){
+		e.preventDefault();
+		var user = Parse.User.current();
+		var fileElement = $('#post-file')[0];
+		var filePath = $('#post-file').val();
+		var fileName = filePath.split('\\').pop();
 
+		if(fileElement.files.length > 0) {
+			var file = fileElement.files[0];
+			var newFile = new Parse.File(fileName, file);
+
+			newFile.save({ 
+				success: function() {
+					alert("Image has been uploaded")
+				}, error: function (file, error) {
+					alert("File Save error: " + error.message)
+				}
+			}).then(function(theFile) {
+			 var model = new UserPost();
+
+			 model.set("file", theFile)
+			 model.save();
+
+		});	
+		}
+
+	}	
+
+	render() {
+		return (
+			<div>
+			<NavBar></NavBar>
+			<div className="container">
+			<div className="page-location"><a href="#home">Home </a> > Profile</div>
+				<div className="user-container">
+					<div className="user-left">
+						<p>Test User Name</p>
+						<img src="#"/>
+
+						<p>test user join date</p>
+						<p>test user last activity</p>
+					</div>
+					<div className="user-right">
+						<div className="page-location">Add An Avatar</div>
+						<form id="post-form" onSubmit={(e) => this._postimage(e)}>
+							<input id="post-file" type="file"></input>
+							<input id="file-submit" type="submit"></input>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		)
+	}	
+
+}
 
 
 
@@ -290,16 +379,19 @@ class Login extends React.Component{
             username: email
         })
 
-                var signup = u.signUp()
+        var signup = u.signUp()
         signup.then(() => window.location.hash = '#home')
         signup.fail(() => {
             var login = u.logIn()
-            login.then((e) => window.location.hash = '#home')
+            login.then((e) =>  window.location.hash = '#home')
             login.fail((...args) => {
                 this.setState({error: this.state.error + 1 })
             })
         })
       
+    }
+    _logout(e){
+    	Parse.User.logOut();
     }
 	render(){
 		var error = this.state.error ? (<p className="error-message">{this.state.error} try - password invalid</p>) : ''
@@ -312,6 +404,10 @@ class Login extends React.Component{
 	    			<input type="submit" value="Sign-In"></input>
 	    			{error}
 	    			<h5>New Here? Sign Up</h5>
+
+
+	    			
+
 	    		</form>
     		</div>
 		)
@@ -320,10 +416,10 @@ class Login extends React.Component{
 
 
 
-
+React.render(<UserView/>, document.body);
 
 /* Router */
-var ForumRouter = Parse.Router.extend ({
+/*var ForumRouter = Parse.Router.extend ({
 	routes: {
 		
 		'home' : 'list',
@@ -357,3 +453,4 @@ var ForumRouter = Parse.Router.extend ({
 });
 
 var router = new ForumRouter();
+*/

@@ -175,7 +175,48 @@ img {
 }
 
 
+.pv-container{
+    .pv-date{
+        background-color: yellow;
+        width: 100%;
+        p{
+            margin: 0;
+        }
+    }
+    .pv-user-info{
+        float: left;
+        background-color: red;
+        width: 30%;
+        height: 300px;
+    }
 
+    .pv-user-post{
+        float: left;
+        background-color: blue;
+        width: 70%;
+        height: 300px;
+    }
+}
+
+.user-container{
+    color: white;
+    height: 450px;
+    .user-left{
+        float: left;
+        width: 35%;
+        background-color: rgb(30,30,30);
+        border-radius: 10px;
+        padding: 10px;
+    }
+
+    .user-right{
+        float: right;
+        width: 60%;
+        form{
+            margin: auto;
+        }
+    }
+}
 
  @media screen and (min-width: 801px){
 
@@ -196,7 +237,7 @@ body{
     margin-top: 130px;
     background-color: rgb(48,48,48);
     width: 98%;
-    height: 1500px;
+    margin-bottom: 50px;
     border-radius: 10px;
     padding: .5em;
     
@@ -216,7 +257,13 @@ body{
     span{
         float: left;
         width: 70%;
+        
     }
+    a{
+            text-decoration: none;
+            float: left;
+            color:#828282;
+        }
     
 }
 
@@ -245,7 +292,7 @@ header{
     z-index: 100;
     background: linear-gradient(to bottom, rgba(44,44,44,.8), rgba(0,0,0,1));
     height: 4em;
-
+    padding: 8px;
     ul{
         float: left;
         list-style: none;
@@ -281,12 +328,12 @@ header{
 }
 
 .menu{
-    border: 2px solid yellow;
+    border: 2px solid red;
     background-image: url(../images/menu.png);
     background-repeat: no-repeat;
     background-size: contain;
-    width: 90px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
     padding: 0;
 }
 
@@ -296,8 +343,8 @@ header{
     background-repeat: no-repeat;
     background-size: cover;
     background-size: contain;
-    width: 90px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
 }
 
 .forum-title{
@@ -306,6 +353,13 @@ header{
     color: white;
 }
 
+.user{
+    float: left;
+    color: white;
+    font-size: 20px;
+    width: 200px;
+    height: 30px;
+}
 .notifications{
     float: right;
     margin-right: 50px;
@@ -315,8 +369,9 @@ header{
     background-repeat: no-repeat;
     background-size: cover;
     background-size: contain;
-    width: 5%;
-    height: 50px;
+    width: 30px;
+    height: 30px;
+    vertical-align: center;
 }
 
 .forum-container{
