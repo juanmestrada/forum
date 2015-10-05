@@ -105,10 +105,10 @@ class NavBar extends React.Component{
 			<div>
 			<header>
         <ul>
-            <li className="menu"></li>
-            <a href="#UserView"><li className="profile"></li></a>
+            <li className="menu"></li>  
             <li className="forum-title">Test Forum</li>
             <li className="user">{Parse.User.current().get("username")}</li>
+            <a href="#UserView"><li className="profile"></li></a>
             <li className="notifications"></li>
         </ul>
 
@@ -137,8 +137,8 @@ class ForumPost extends React.Component{
                 	<p>{model.get('content')}</p>
             	</div>
             	<ul className="forum-replies">
-            		<li className="replies">Replies:<a href="#">10</a></li>
-            		<li className="views"><p>Views:</p><a href="#">10</a></li>
+            		<li className="replies">Replies<a href="#">10</a></li>
+            		<li className="views"><p>Views</p><a href="#">10</a></li>
             	</ul>
             	<ul className="last-post">
             		<li className="author">{model.get('user')}</li>
@@ -169,7 +169,7 @@ class ForumView extends React.Component {
 			<div>
 			<NavBar></NavBar>
 			 <div className="container">	 
-    	<div className="page-location"><span>Home</span></div>
+    	<div className="page-location"><span>Hom</span></div>
     	<div className="new-thread"><a href={`#post`} > + New Thread</a></div>
     	<div className="forum-container">
     		<div className="colum-header"><h6>Title/ Threads</h6><span>Replies</span><span>Last Post by</span></div>
@@ -454,3 +454,6 @@ React.render(<UserView/>, document.body);
 
 var router = new ForumRouter();
 */
+
+
+
