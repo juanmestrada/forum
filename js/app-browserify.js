@@ -14,14 +14,12 @@ import _ from 'underscore'
 var Parse = window.Parse
 Parse.$ = $
 
-console.log(Parse)
 
 
 const UserPost = Parse.Object.extend({
 	className: 'UserPost',
 	defaults: {
 		title: '(no title)',
-		author: null,
 		content: null
 	}
 })
@@ -31,64 +29,61 @@ const ForumCollection = Parse.Collection.extend({
 	model: UserPost
 })
 
+
+
 const list = new ForumCollection()
 
 list.query = new Parse.Query(UserPost)
 
-/*var forumCollection = new ForumModel([
-	{title: 'Test question 1'},
-	{title: 'Test question 2', author: "toby", content: "is working!"},
-	{title: 'Test question 3', author: "juan"}
-])
+/*var id = list.id;
+list.query.equalTo('objectId', id)
+list.query.find()
+
+ console.log(list);
+
 */
-
-
-
-// var post= new ForumPost();
-
-// post.set({
-// 	title : "and another one",
-// 	author : "biggie",
-// 	content: "hey hey hey ehy",
-// 	isNewThread: true
-// })
-
-// post.save().then(function(postmodel){
-// 	console.log(postmodel)
-
-// })
-
-
-
-
- console.log("Javascript is working!");
-
-
 
 
 
 
 /*jQuery Events*/
-$(window).resize(function(){
+/*$(window).resize(function(){
 var width = $(window).width();
 if(width >= 801){
-/* Code for big screen */
+// Code for big screen 
 $('document').ready(function() {
 	
 });
 }
 else if(width >= 800){
-/* Code for medium screen */
+// Code for medium screen 
 }
 else if (width<= 480){
-/* Code for small screen */
+// Code for small screen 
 $('document').ready(function() {
 
 });
 }
 });
+*/
+//
 
 
+var user = Parse.User.current(),
+			profilePhoto = user.get('image'),
+			parsePic = profilePhoto.url(),
+			webPic = "../images/profile-photo.jpg"
+
+			
+function image() {
+
+	if(profilePhoto.url()){
+		return parsePic
+	}else{
+		return webPic
+	}
+
+}
 
 
 /* React */
@@ -105,7 +100,7 @@ class NavBar extends React.Component{
 			<header>
         <ul>
             <li className="menu"></li>
-            <a href="#UserView"><li className="profile"></li></a>
+            <a href="#profile"><li className="profile"></li></a>
             <li className="forum-title">Test Forum</li>
             <li className="user">{Parse.User.current().get("username")}</li>
             <li className="notifications"></li>
@@ -127,12 +122,14 @@ class ForumPost extends React.Component{
 	}
 	render() {
 		var model = this.props.data;
+		var id = model.id;
+
+		var ash = '#threads/' + id;
 		return (
 			<div className="forum-column">
-                <div className="user-picture"><img src="http://www.adtechnology.co.uk/images/UGM-default-user.png" /></div>
+                <div className="user-picture"><img src={image()} /></div>
                 <div className="forum-question">
-                	<h3><a className="question-title">{model.get('title')}</a></h3> 	
-                
+                	<a href={ash} ><h3>{model.get('title')}</h3> </a>	
                 	<p>{model.get('content')}</p>
             	</div>
             	<ul className="forum-replies">
@@ -179,7 +176,7 @@ class ForumView extends React.Component {
         <div className="user-earnings-wrapper">
             <h6>Seller Earnings</h6>
             <div className="seller-earnings">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjOpzej-tNCbt4HpDtscG03tj12DAIEflcW6r40p8es2gqGviT4LS1-Xa3" />
+                <img src={image()} />
                 <p className="user">Userfjdfnfddcd@yahoo.com</p><span>Earned:</span><p className="user-amount">$<span>100</span></p>
 
             </div>
@@ -191,7 +188,7 @@ class ForumView extends React.Component {
 }
 
 
-/*New Question*/
+//New Thread
 class PostContent extends React.Component{
 	constructor(props){
 		super(props)
@@ -259,7 +256,7 @@ class PostContent extends React.Component{
 
 //Question view
 
-class PostView extends React.Component{
+class threads extends React.Component{
 	render() {
 		return(
 		<div>
@@ -281,11 +278,12 @@ class PostView extends React.Component{
 
 
 
-//User View
+//User Profile
 
-class UserView extends React.Component{
+class ProfileSettings extends React.Component{
 	constructor(props){
 		super(props)
+		this.rerender = () => this.forceUpdate()
 	}
 	
 	_postimage(e){
@@ -308,15 +306,19 @@ class UserView extends React.Component{
 			}).then(function(theFile) {
 			 var model = new UserPost();
 
-			 model.set("file", theFile)
-			 model.save();
-
+			 user.set("image", theFile)
+			 user.save();
 		});	
 		}
 
 	}	
 
 	render() {
+		
+
+		var recentActivity = user.updatedAt,
+		joinDate = Parse.User.current().createdAt 
+
 		return (
 			<div>
 			<NavBar></NavBar>
@@ -324,11 +326,12 @@ class UserView extends React.Component{
 			<div className="page-location"><a href="#home">Home </a> > Profile</div>
 				<div className="user-container">
 					<div className="user-left">
-						<p>Test User Name</p>
-						<img src="#"/>
-
-						<p>test user join date</p>
-						<p>test user last activity</p>
+						<p>{user.get("username")}</p>
+						<img id="profileImg" src={image()}/>
+						<br/>
+						<br/>
+						<p>Joined: </p>
+						<p>Recent Activity: </p>
 					</div>
 					<div className="user-right">
 						<div className="page-location">Add An Avatar</div>
@@ -344,17 +347,6 @@ class UserView extends React.Component{
 	}	
 
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -415,15 +407,17 @@ class Login extends React.Component{
 
 
 
-React.render(<UserView/>, document.body);
+//React.render(<ProfileSettings/>, document.body);
 
-/* Router */
-/*var ForumRouter = Parse.Router.extend ({
-	routes: {git commit -m "a message about the commit"hub create <projectname>
+// Router 
+var ForumRouter = Parse.Router.extend ({
+	routes: {
 		
 		'home' : 'list',
 		'post' : 'PostContent',
-		'*default': 'login'
+		'profile': 'settings',
+		'*default': 'login',
+		'threads/:id': 'threads'
 	}, 
 	list: function() {
 		 if(!Parse.User.current()){
@@ -442,9 +436,16 @@ React.render(<UserView/>, document.body);
 
 		React.render(<Login></Login>, document.body);
 	},
+	settings: () => {
+		React.render(<ProfileSettings/>, document.body);
+	},
 	PostContent: function(){
 		React.render(<PostContent data={list}></PostContent>, document.body);
 	},
+	threads: function(id){
+		React.render(<threads/>, document.body);
+	},
+
 	initialize: function() {
 		Parse.history.start();
 	}
@@ -452,4 +453,4 @@ React.render(<UserView/>, document.body);
 });
 
 var router = new ForumRouter();
-*/
+
