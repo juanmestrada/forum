@@ -82,7 +82,7 @@ var user = Parse.User.current(),
 			parsePic = profilePhoto.url(),
 			webPic = "../images/profile-photo.jpg"
 
-			
+/*			
 function image() {
 
 	if(profilePhoto.url()){
@@ -92,7 +92,7 @@ function image() {
 	}
 
 }
-
+*/
 
 // React
 
