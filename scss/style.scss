@@ -176,25 +176,117 @@ img {
 
 
 .pv-container{
+    
+    color: white;
+    background-color: #232323;
+    width: 100%;
+    
+    overflow: auto;
+    padding: 10px;
+    position: relative;
+    
     .pv-date{
         background-color: yellow;
         width: 100%;
+        border-radius: 10px;
         p{
             margin: 0;
         }
     }
     .pv-user-info{
         float: left;
-        background-color: red;
-        width: 30%;
-        height: 300px;
+        width: 20%;
+        
+        background: linear-gradient(to bottom, rgba(44,44,44,.8), rgba(0,0,0,1));
+        padding: 15px;
+        .pv-user-name{
+            text-align: center;
+        }
+        .pv-user-image{
+            img{
+                
+                display: block;
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+                vertical-align: middle;
+                margin: auto;
+            }
+        }
+        .pv-join-date{
+            font-size: 12px;
+            p{
+                text-align: center;
+                margin-bottom: 0;
+                font-size: 16px;
+            }
+        }
+        .pv-update-date{
+            font-size: 12px;
+            p{
+                text-align: center;
+                margin-bottom: 0;
+                font-size: 16px;
+            }
+        }
+
     }
 
     .pv-user-post{
         float: left;
-        background-color: blue;
-        width: 70%;
+        width: 80%;
         height: 300px;
+        padding: 15px;
+        h5{
+            color: white;
+            padding: 5px;
+            border-bottom: 1px solid white;
+        }
+    }
+}
+
+#reply-bttn{
+    width:100px;
+    position: absolute;
+    bottom: 0px;
+    right: 80px;
+    img{
+        float: left;
+        width:40%;
+    }
+    p{
+        float: right;
+        width: 60%;
+        margin: 0;
+    }
+    span{
+        color: white;
+    }
+}
+
+#pv-comment-container{
+    position: fixed;
+    bottom: 0;
+    width: 80%;
+    display: none;
+    margin:auto;
+    margin-top: 100px;
+    padding: 10px;
+    margin-left: 8%;
+    box-shadow: -3px -3px 6px rgba(0,0,0,0.12),3px -3px 6px rgba(0,0,0,0.12);
+    background-color: rgba(0,0,0,.7);
+    #pv-comment-form{
+        width: 90%;
+        margin: 0 auto;
+        textarea{
+            width: 100%;
+        }
+        input[type='submit']{
+            float: right;
+        }
+    }
+    p{
+        color: white;
     }
 }
 
@@ -222,7 +314,7 @@ img {
 
     .user-right{
         float: right;
-        width: 60%;
+        width: 75%;
         form{
             margin: auto;
             input{
@@ -231,6 +323,48 @@ img {
         }
     }
 }
+
+
+#comment-view{
+    width: 80%;
+    float: right;
+    background-color: rgba(35,35,35, .7);
+    box-shadow: -3px -3px 6px rgba(0,0,0,0.12),3px -3px 6px rgba(0,0,0,0.12);
+    margin-top: 40px;
+    color: white;
+    #comment-user-info{
+        width: 20%;
+        background: -webkit-linear-gradient(top,rgba(44,44,44,.8),#000);
+        background: linear-gradient(to bottom,rgba(44,44,44,.8),#000);
+        padding: 15px;
+
+        #comment-user-name{
+
+        }
+        #comment-user-img{
+            img{
+                display: block;
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+                vertical-align: middle;
+                margin: auto;
+            }
+            
+            
+        }
+        #comment-user-date{
+
+        }
+    }
+    #reply-container{
+        width: 70%;
+        #reply-text{
+
+        }
+    }
+}
+
 
  @media screen and (min-width: 801px){
 
@@ -306,7 +440,7 @@ header{
     z-index: 100;
     background: linear-gradient(to bottom, rgba(44,44,44,.8), rgba(0,0,0,1));
     height: 4em;
-    padding: 8px;
+    padding: 15px;
     ul{
         float: left;
         list-style: none;
@@ -362,17 +496,18 @@ header{
 }
 
 .forum-title{
-    width: 200px;
-    font-size: 2em;
+    width: 50%;
+    font-size: 1.5em;
     color: white;
 }
 
 .user{
     float: left;
     color: white;
-    font-size: 20px;
-    width: 200px;
+    font-size: 16px;
+    width: 25%;
     height: 30px;
+    text-align: right;
 }
 .notifications{
     float: right;
@@ -387,6 +522,8 @@ header{
     height: 30px;
     vertical-align: center;
 }
+
+
 
 .forum-container{
     float:left;
@@ -458,11 +595,12 @@ header{
 .forum-question{
     float:left;
     width: 72%;
-    padding: 3px;
+    padding: 6px;
     h3{
         display: block;
         font-size: 1em;
         color:white;
+        margin: 0;
          a{
             text-decoration: none;
             color: red;
@@ -641,7 +779,7 @@ body{
     background-color: rgb(35,35,35);
     padding:5px;
     font-size: 12px;
-    line-height: 2.5em;
+    line-height: 1.5em;
     border-radius:5px;
     margin-top:20px; 
     margin-bottom: 20px;
@@ -671,8 +809,7 @@ header{
     width: 100%;
     z-index: 100;
     background: linear-gradient(to bottom, rgba(44,44,44,.8), rgba(0,0,0,1));
-    height: 4em;
-
+    height: 1.5em;
     ul{
         float: left;
         list-style: none;
@@ -712,9 +849,10 @@ header{
     background-image: url(../images/menu.png);
     background-repeat: no-repeat;
     background-size: contain;
-    width: 90px;
-    height: 50px;
+    width: 10%;
+    height: 35px;
     padding: 0;
+
 }
 
 .profile{
@@ -723,29 +861,38 @@ header{
     background-repeat: no-repeat;
     background-size: cover;
     background-size: contain;
-    width: 90px;
-    height: 50px;
+    width: 10%;
+    height: 35px;
 }
 
 .forum-title{
-    width: 200px;
-    font-size: 2em;
+    width: 30%;
+    font-size: 1em;
     color: white;
 }
 
+.user{
+    width: 30%;
+    font-size:1em;
+    color: white; 
+}
 .notifications{
     float: right;
-    margin-right: 50px;
-    width: 15%;
+    
+    width: 10%;
     border: 2px solid yellow;
     background-image: url(../images/notification.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-size: contain;
-    width: 5%;
-    height: 50px;
+    
+    height: 35px;
 }
 
+
+.container{
+    margin-top: 50px;
+}
 .forum-container{
     float:left;
     width: 78%;
@@ -816,7 +963,7 @@ header{
     padding: 3px;
     h3{
         display: block;
-        font-size: .5em;
+        font-size: 12px;
         color:white;
          a{
             text-decoration: none;
@@ -827,7 +974,7 @@ header{
     p{
         display: none;
         border: 2px solid red;
-        height: 80px;
+        height: 40px;
         font-size: .5em;
         overflow:hidden;
         text-overflow:ellipsis;
@@ -939,7 +1086,56 @@ ul{
 
 }
 
+.pv-container{
+    height: auto;
+    .pv-title{
+        font-size:14px;
+        p{
+            margin: 0;
+        } 
 
+
+    }
+    .pv-user-info{
+        width: 15%;
+        padding: 5px;
+        .pv-user-name{
+            font-size: 12px;
+        }
+        .pv-user-image{
+            img{
+                width: 50px;
+                height: 50px;
+            }
+
+        }  
+        .pv-join-date{
+            font-size: .3em;
+            p{
+                font-size:12px;
+            }
+        }
+        .pv-update-date{
+            font-size: .3em;
+            p{
+                font-size:12px;
+            }
+        } 
+        
+    }
+}
+.pv-user-post{
+            margin-left: 1em;
+        
+            .s-title{
+                font-size: 1em;
+                margin-bottom: 0;
+            }
+                
+            p{
+                font-size: .9em;
+            }
+        }
 
 }
 
@@ -983,25 +1179,34 @@ body{
     height: 1500px;
     padding:0;
 }
-
+/*Header*/
 header{
     position: fixed; 
     top: 0;
     width: 100%;
     z-index: 100;
     background: linear-gradient(#595454, #242424, .2);
-    height: 6em;
+    height: 2em;
     ul{
         float: left;
         list-style: none;
         width: 100%;
         margin: 0;
+        padding: 0;
         li{
             float: left;
             font-size: 2em;
             
-
+            
         }
+        .forum-title{
+                width: 15%;
+            }
+        .user{
+                width: 50%;
+                text-align: right;
+                margin-top: 10px;
+            }
     }
 
     form{
@@ -1026,39 +1231,33 @@ header{
     background-image: url(../images/menu.png);
     background-repeat: no-repeat;
     background-size: contain;
-    width: 50px;
-    height: 50px;
-    padding: 0;
-}
+}    
 
 .profile{
-    border: 2px solid yellow;
-    background-image: url(../images/profile.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-size: contain;
-    width: 15%;
-    height: 50px;
+ 
+  
 }
 
 .forum-title{
     margin-left: 5px;
-    width: 40%;
-    font-size: 2em;
+    width: 25%;
+    font-size: 1em;
     color: white;
 }
-
-.notifications{
-    float: right;
-    margin-right: 40px;
-    border: 2px solid yellow;
-    background-image: url(../images/notification.png);
-     background-repeat: no-repeat;
-    background-size: cover;
-    background-size: contain;
-    width: 50px;
-    height: 50px;
+.user{
+    width: 30%;
+    font-size: 12px;
 }
+.notifications{
+   
+}
+
+.container{
+    margin-top: 25px;
+}
+
+
+/* Home view*/
 .forum-container{
     float:left;
     width: 100%;
@@ -1140,15 +1339,15 @@ header{
     float:left;
     width: 65%;
     padding: 3px;
-    h3{
+    
+         
+            h3{
         display: block;
-        font-size: 11px;
+        font-size: 16px;
         color:white;
-         a{
-            text-decoration: none;
-            color: red;
+
         }
-    }
+    
     p{
         display: none;
         border: 2px solid red;
@@ -1201,7 +1400,7 @@ ul{
 
 
 .user-earnings-wrapper{
-    
+    display: none;
     position:absolute;
     top: 150px;
     width: 100%;
@@ -1214,7 +1413,80 @@ ul{
     }
 
 }
+.page-location{
+    display: none;
+}
 
+/*thread View*/
+.pv-container{
+    padding: 5px;
+    margin-top: 55px;
+    .pv-title{
+        position: fixed;
+        width: 100%;
+        top: 34px;
+        background-color: gray;
+        padding: 5px;
+    }
+    .pv-user-info{
+        width:100%;
+        .pv-user-image{
+            width: 20%;
+            float: left;
+        }
+        .pv-user-name{
+            width:70%;
+            float: right;
+            text-align: left;
+            p{
+                margin: 0;
+            }
+        }
+        
+        .pv-join-date{
+            display: none;
+        }
+        .pv-update-date{
+            display: none;
+        }
+    }
+    .pv-user-post{
+        width: 100%;
+        margin:0;
+    }
+}
+
+/*Comments view*/
+
+#comment-view{
+    width: 95%;
+    #comment-user-info{
+        padding: 5px;
+        width: 100%;
+        height: 50px;
+        #comment-user-img{
+            img{
+                width: 40px;
+                height: 40px;
+                float: left;
+
+            }
+        }
+    }
+    #reply-container{
+        width: 100%;
+    }
+}
+
+#pv-comment-container{
+    width: 100%;
+    margin-left: 0;
+    #pv-comment-form{
+        p{
+            margin-bottom: 0;
+        }
+    }
+}
 
 }
 

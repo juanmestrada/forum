@@ -17,40 +17,52 @@ Parse.$ = $
 
 
 const UserPost = Parse.Object.extend({
-	className: 'UserPost'
-	
+	className: 'UserPost',
+	defaults: {
+		title: '(no title)',
+		content: null
+	}
 })
 
-const Comment = Parse.Object.extend({
-	className: "Comment"
-})
 
 const ForumCollection = Parse.Collection.extend({
 	model: UserPost
-
-
-})
-
-const CommentCollection = Parse.Collection.extend({
-	model: Comment
 })
 
 
-const commentlist = new CommentCollection()
-
-console.log(commentlist)
 
 const list = new ForumCollection()
 
 list.query = new Parse.Query(UserPost)
+
+
+list.query.include('user')
+
 list.query.descending("createdAt")
 
+list.query.find({
+	success: function(results) {
+		for(var i in results) {
+			var title = results[i].get('title'),
+				content = results[i].get('content'),
+				user = results[i].get('user'),
+				username = results[i].get('username')
 
-commentlist.query = new Parse.Query(Comment)
+			console.log(results[i])
+		}
+	}, error: function(error) {
+		alert("Error: "+ error.message)
+	}
+})
 
+/*var id = list.id;
+list.query.equalTo('objectId', id)
+list.query.find()
 
+ console.log(list);
 
-/*
+*/
+
 
 
 
@@ -94,10 +106,10 @@ function image() {
 }
 
 
-// React
+/* React */
 
 
-//Menu
+/*Menu*/
 class NavBar extends React.Component{
 	constructor(props){
 		super(props)
@@ -109,10 +121,14 @@ class NavBar extends React.Component{
         <ul>
             <li className="menu"></li>
             <a href="#profile"><li className="profile"></li></a>
-            <li className="forum-title">Forum</li>
-            <li className="user">Welcome, {Parse.User.current().get("username")}</li>
+            <li className="forum-title">Test Forum</li>
+            <li className="user">{Parse.User.current().get("username")}</li>
             <li className="notifications"></li>
         </ul>
+
+        <form>
+            <input type="search" placeholder="search"></input>
+        </form>
     </header>
     </div>
 		)
@@ -127,38 +143,30 @@ class ForumPost extends React.Component{
 		this.rerender = () => this.forceUpdate()
 	}
 	_test(e){
-		//just a test to get the object id
-		e.preventDefault();
-		var model = this.props.data;
-		var link = $(this).attr('href')
-		//console.log(link)
-		console.log(this.props.data.get('content'))
-		console.log(this.props.data.id)
+		var link = $( ".forum-question a").attr('href')
+
 		list.query = new Parse.Query(UserPost);
 		list.query.equalTo('objectId', link);
 		list.query.find({
 			success: function(results){
-				
-				
-			}, error: function(){
+				alert(results[0].get('title'))
+				Thread ()
+		}, error: function(){
 
-			}
-			
+		}
 		});
-		
 			
 	}
 	render() {
 		var model = this.props.data;
 		var id = model.id;
-		var hashRoute = window.location.hash;
 
 		var ash = "#threads/"+id;
 		return (
 			<div className="forum-column">
                 <div className="user-picture"><img src={image()} /></div>
                 <div className="forum-question">
-                	<a href={ash}  ref="x" /*onClick={(e) => this._test(e)}*/ ><h3>{model.get('title')}</h3> </a>	
+                	<a href={id} onClick={(e) => this._test(e)}><h3>{model.get('title')}</h3> </a>	
                 	<p>{model.get('content')}</p>
             	</div>
             	<ul className="forum-replies">
@@ -166,8 +174,8 @@ class ForumPost extends React.Component{
             		<li className="views"><p>Views:</p><a href="#">10</a></li>
             	</ul>
             	<ul className="last-post">
-            		<li className="author">{model.get('username')}</li>
-            		<li className="date"><p>{model.get('createdAt')}</p></li>
+            		<li className="author">{model.get('user')}</li>
+            		<li className="date"><p></p></li>
             	</ul>
             </div>
 		)
@@ -190,7 +198,6 @@ class ForumView extends React.Component {
 		PostContent.props.data.add({title: input.value})
 	}
 	render() {
-
 		return (
 			<div>
 			<NavBar></NavBar>
@@ -199,7 +206,7 @@ class ForumView extends React.Component {
     	<div className="new-thread"><a href={`#post`} > + New Thread</a></div>
     	<div className="forum-container">
     		<div className="colum-header"><h6>Title/ Threads</h6><span>Replies</span><span>Last Post by</span></div>
-            	{this.props.data.map((model) => <ForumPost data={model} />)}
+            	{this.state.data.map((model) => <ForumPost data={model} />)}
         </div>
 
 
@@ -218,7 +225,7 @@ class ForumView extends React.Component {
 }
 
 
-//New Thread View
+//New Thread
 class PostContent extends React.Component{
 	constructor(props){
 		super(props)
@@ -261,6 +268,7 @@ class PostContent extends React.Component{
 							</div>
 							<div className="post-content">
 								
+								
 									<textarea id="post-question" ref="content" cols="90" rows="12"></textarea>
 									
 								<input className="post_content_button" type="submit" value="Post"></input>
@@ -283,249 +291,39 @@ class PostContent extends React.Component{
 
 }
 
-//Single Post View
+//post view
 
 class Thread extends React.Component{
 	constructor(props){
 		super(props)
-		this.rerender = () => this.forceUpdate()
-	}
-	componentDidMount(){
-	
-		this.props.cmt.on('update sync', this.rerender)
-		var rt = this.props.s
-
-
-		list.query = new Parse.Query(UserPost);
-		list.query.equalTo('objectId', rt);
-		list.query.include('user');
-		list.query.find({
-			success: function(results){
-				
-				//console.log(results[0].get('title'))
-				var title = results[0].get("title")
-				var content = results[0].get("content")
-				var user = results[0].get("user")
-				var username = user.get('username')
-				var date = results[0].createdAt
-				var updatedAt = results[0].updatedAt
-				var id = results[0].id
-				var uimg = user.get('image')
-				var userimg = uimg.url() 
-				var backimg = "../images/profile-photo.jpg"
-
-/*
-				console.log(title)
-				console.log(content)
-				console.log(username)
-				console.log(date)
-				console.log(userimg)
-				console.log(id)*/
-
-				function postImg(){
-					if(uimg){
-						return userimg
-					}else{
-						return backimg
-
-					}
-				}
-				$(".pv-title p").html("Thread: " + title)
-				$(".pv-user-name p").html(username)
-				//$(".pv-user-image img").html(userimg)
-				$(".pv-user-image img ").attr("src",postImg());
-				$(".pv-join-date span").html(date)
-				$(".pv-update-date span").html(updatedAt)
-
-				$(".pv-user-post p").html(content)
-				$(".s-title").html(title)
-
-				$("#pv-comment-id").val(id)
-				
-			}, 
-			error: function(error){
-				alert("Parse says :" + error.message)
-			}
-			
-		});
 		
-	}
-	_postcomment(e){
-		e.preventDefault();
-
-		var Comment = Parse.Object.extend("Comment")
-		var commentId = $("#pv-comment-id").val();
-		var	commentText = $('#pv-comment-text').val();
-		var user = Parse.User.current();
-		var	userpost = new UserPost({id:commentId});
-		var	comment = new Comment();
-/*
-		console.log(commentId)
-		console.log(commentText)
-		console.log(user)
-		console.log(userpost)	
-		console.log(comment)*/	
-
-		comment.set("content", commentText)
-		comment.set("user", user)
-		comment.set("userpost", userpost)
-		comment.save({
-			success: function(obj){
-				alert("Comment saved!")
-
-				function postImg(){
-					if(uimg){
-						return userimg
-					}else{
-						return backimg
-
-					}
-				}
-				$("#comment-user-name").html(user)
-				//$("#comment-user-image").attrl(postImg())
-				//$("#comment-user-date").html(user)
-				$("#reply-text").html(commentText)
-				
-				$("#pv-comment-container").hide()
-
-			}, error: function(obj, error) {
-				alert("Saving Error: " + error.message)
-			}
-		})
-		var input = React.findDOMNode(this.refs.pvcomment)
-		input.value = ''
-		//make comment box disappear
-		this.props.cmt.on('update sync', this.rerender)
-	}
-	_showbox(e){
-		e.preventDefault()
-		$("#pv-comment-container").show()
-
-	}
-
-	_hidebox(e){
-		
-		$("#pv-comment-container").hide();
 	}
 	render() {
-
-
-		return(	
+		//var model = this.props.data;
+		//var id = model.id;
+		console.log("herro")
+		return(
 		<div>
 			<NavBar></NavBar>
 			<div className="container">
-				<div className="page-location"><a href="#home">Home </a> > Thread</div>
-
 				<div className="pv-container">
 					<div className="pv-title"><p></p></div>
-					<div className="pv-user-info">
-						<div className="pv-user-name"><p></p></div>
-						<div className="pv-user-image"><img src=" "/></div>
-						<div className="pv-join-date"><p>Join: </p><span></span></div>
-						<div className="pv-update-date"><p>Last Updated: </p><span></span></div>
-					</div>
-					<div className="pv-user-post">
-						<h5 className="s-title"></h5>
-						<br/>
-						<p></p>
-					</div>
-					<div id="reply-bttn" onClick={(e) => this._showbox(e)}>
-						<img src="../images/reply.png" />
-						<p>Reply</p>
-					</div>
+					<div className="pv-da"><p></p></div>
+					<div className="pv-user-info"></div>
+					<div className="pv-user-post">${title}</div>
 				</div>
-				{this.props.cmt.map((model) => <CommentView cmt={model} />)}
+			
+			
 
-				<div id="pv-comment-container" onBlur={(e) => this._hidebox(e)}>
-					<form id="pv-comment-form">
-						<p>Reply to:</p>
-						<input id="pv-comment-id" type="hidden" value=" " />
-						<textarea id="pv-comment-text" ref="pvcomment" ></textarea>
-						
-						<input type="submit" onClick={(e) => this._postcomment(e)}  />
-					</form>
-				</div>
 			</div>
 		</div>
 		)
 	}
 }
 
-//Comment view
 
-class CommentView extends React.Component{
-	constructor(props){
-		super(props)
-		
-	}
-	componentDidMount(){
 
-		//var commentId = $("#pv-comment-id").val();
-		var wHash = window.location.hash.substr(9)
-
-		//console.log(wh)
-
-		var cmmntlist = this.props.cmt
-		
-		console.log(wHash)
-		console.log(cmmntlist)
-		cmmntlist.query = new Parse.Query('Comment')
-		cmmntlist.query.equalTo('objectId', wHash);
-		//commentlist.query.include('user');
-		cmmntlist.query.include('userpost');
-		cmmntlist.query.find({
-			success: function(results){
-				/*//var title = results[0].get("title")
-				var post = results[0].get("userpost")
-				var title = post.get("title")
-				var content = results[0].get("content")
-				var user = results[0].get("user")
-				var username = user.get('username')
-
-				//console.log(username)
-				console.log(content)*/
-				var user = results
-				
-
-				console.log(user)
-				console.log("query worked")
-			}, 
-			error: function(error){
-				alert("Parse says :" + error.message)
-			}
-		})
-		
-		
-
-	}
-
-	render() {
-		var cmodel = this.props.cmt
-		//console.log(cmodel.get("userpost"))
-
-		//log each id OF COMMENT VV
-		//alert(cmodel.id)
-		//console.log(cmodel.get('user'))
-
-		return(
-			<div>
-				<div id="comment-view">
-					<div id="comment-user-info">
-						<div id="comment-user-name"><p></p></div>
-						<div id="comment-user-img"><img src={image()}/></div>
-						<div id="comment-user-date"><p>test</p></div>
-					</div>
-					<div id="reply-container">
-						<div id="reply-text"><p>test{cmodel.get("userpost")}</p></div>
-					</div>
-				</div>
-			</div>
-
-		)
-	}
-}
-
-//User Profile View
+//User Profile
 
 class ProfileSettings extends React.Component{
 	constructor(props){
@@ -563,7 +361,9 @@ class ProfileSettings extends React.Component{
 	render() {
 		
 
-		
+		var recentActivity = user.updatedAt,
+		joinDate = Parse.User.current().createdAt 
+
 		return (
 			<div>
 			<NavBar></NavBar>
@@ -595,7 +395,7 @@ class ProfileSettings extends React.Component{
 
 
 
-//Log In View
+/*Login View*/ 
 class Login extends React.Component{
 	constructor(props){
 		super(props)
@@ -607,13 +407,12 @@ class Login extends React.Component{
 
         var u = new Parse.User(),
             email = React.findDOMNode(this.refs.email).value,
-            password = React.findDOMNode(this.refs.password).value,
-            username = React.findDOMNode(this.refs.username).value
+            password = React.findDOMNode(this.refs.password).value
 
         u.set({
             email: email,
             password: password,
-            username: username
+            username: email
         })
 
         var signup = u.signUp()
@@ -636,7 +435,6 @@ class Login extends React.Component{
 			
 			<div className="login-wrapper">
 	    		<form onSubmit={(e) => this._signupOrLogin(e)}>	
-	    			<input type="username" placeholder="username" ref="username"></input>
 	    			<input type="email" placeholder="email" ref="email"></input>
 	    			<input type="password" placeholder="password" ref="password"></input>
 	    			<input type="submit" value="Sign-In"></input>
@@ -663,7 +461,6 @@ var ForumRouter = Parse.Router.extend ({
 		'home' : 'list',
 		'post' : 'PostContent',
 		'profile': 'settings',
-		'login': 'login',
 		'*default': 'login',
 		
 	}, 
@@ -690,13 +487,8 @@ var ForumRouter = Parse.Router.extend ({
 	PostContent: function(){
 		React.render(<PostContent data={list}></PostContent>, document.body);
 	},
-	threads: function(id){
-		
-		commentlist.fetch()
-		React.render(<Thread data={list}  s={id} cmt={commentlist}/>, document.body)
-	},
-	commentc: function(){
-		React.render(<CommentView cmt={commentlist}/>, document.body)
+	threads: function(model){
+		React.render(<Thread data={model.id}/>, document.body);
 	},
 
 	initialize: function() {
