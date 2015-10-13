@@ -76,13 +76,13 @@ $('document').ready(function() {
 */
 //
 
-
+/*
 var user = Parse.User.current(),
 			profilePhoto = user.get('image'),
 			parsePic = profilePhoto.url(),
 			webPic = "../images/profile-photo.jpg"
 
-/*			
+			
 function image() {
 
 	if(profilePhoto.url()){
