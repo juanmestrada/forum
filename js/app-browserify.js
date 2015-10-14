@@ -87,12 +87,17 @@ class NavBar extends React.Component{
 	constructor(props){
 		super(props)
 	}
+
+	_logout(e){
+		Parse.User.logOut();
+		window.location.hash = '#login'
+	}
 	render() {
 		return (
 			<div>
 			<header>
         <ul>
-            <li className="menu"></li>
+            <li className="menu" onClick={(e) => this._logout(e)}></li>
             <a href="#profile"><li className="profile"></li></a>
             <li className="forum-title">Forum</li>
             <li className="user">Welcome, {Parse.User.current().get("username")}</li>
@@ -118,29 +123,30 @@ class ForumPost extends React.Component{
 		var hashRoute = window.location.hash;
 
 		var ash = "#threads/"+id;
-		var user = Parse.User.current(),
+		/*var user = Parse.User.current(),
 					profilePhoto = user.get('image'),
-					parsePic = profilePhoto.url(),
-					webPic = "../images/profile-photo.jpg"
+					parsePic = profilePhoto.url(),*/
+
+				var	webPic = "../images/profile-photo.jpg"
 
 					
 				function image() {
 
-					if(profilePhoto.url()){
-						return parsePic
+					if(Parse.User.current().get('image')){
+						return Parse.User.current().get('image').url()
 					}else{
 						return webPic
 					}
 
-				}
+				}/*
 				var userpost = new UserPost('UserPost')
 				var herro = model.get('user')
 				var test = herro.get('file')
-				var usert =model.user()
+				//var usert =model.user()
 				
 
 				console.log(herro)
-				console.log(usert)
+				console.log(usert)*/
 
 				//*********************need to find post image*********************************************
 
@@ -181,7 +187,7 @@ class ForumView extends React.Component {
 	}
 	render() {
 		//not the correct use of image function. connected to USer earnings wrapper. Should be updated to notification
-		var user = Parse.User.current(),
+		/*var user = Parse.User.current(),
 			profilePhoto = user.get('image'),
 			parsePic = profilePhoto.url(),
 			webPic = "../images/profile-photo.jpg"
@@ -195,7 +201,7 @@ class ForumView extends React.Component {
 					return webPic
 				}
 
-			}
+			}*/
 		//         ***************************************************************************************************	
 
 		return (
@@ -213,7 +219,7 @@ class ForumView extends React.Component {
         <div className="user-earnings-wrapper">
             <h6>Seller Earnings</h6>
             <div className="seller-earnings">
-                <img src={image()} />
+                <img src='' />
                 <p className="user">Userfjdfnfddcd@yahoo.com</p><span>Earned:</span><p className="user-amount">$<span>100</span></p>
 
             </div>
@@ -319,18 +325,20 @@ class Thread extends React.Component{
 				var id = results[0].id
 
 
-				var uimg = user.get('image')
-				var userimg = uimg.url() 
+				
+				
 				var backimg = "../images/profile-photo.jpg"
 
 				function postImg(){
-					if(uimg){
-						return userimg
+					if(user.get('image')){
+						return user.get('image').url()
 					}else{
 						return backimg
 
 					}
 				}
+
+
 				$('.user-picture img').attr('src', postImg())
 				$(".pv-title p").html("Thread: " + title)
 				$(".pv-user-name p").html(username)
@@ -503,16 +511,14 @@ class CommentView extends React.Component{
 		//log each id OF COMMENT VV
 		//alert(cmodel.id)
 		//console.log(cmodel.get('user'))
-		var user = Parse.User.current(),
-					profilePhoto = user.get('image'),
-					parsePic = profilePhoto.url(),
-					webPic = "../images/profile-photo.jpg"
+		
+				var	webPic = "../images/profile-photo.jpg"
 
 					
 				function image() {
 
-					if(profilePhoto.url()){
-						return parsePic
+					if(Parse.User.current().get('image') ){
+						return Parse.User.current().get('image').url()
 					}else{
 						return webPic
 					}
@@ -578,24 +584,21 @@ class ProfileSettings extends React.Component{
 	}
 
 	render() {
-		
-		var user = Parse.User.current(),
-			profilePhoto = user.get('image'),
-			parsePic = profilePhoto.url(),
-			webPic = "../images/profile-photo.jpg"
+		var user = Parse.User.current()
+		var	webPic = "../images/profile-photo.jpg"
 
-			
-		function image() {
+					
+				function image() {
 
-			if(profilePhoto.url()){
-				return parsePic
-			}else{
-				return webPic
-			}
+					if(user.get('image')) {
+						return Parse.User.current().get('image').url()
+					}else{
+						return webPic
+					}
 
 		}
-
 		
+		console.log()
 		return (
 			<div>
 			<NavBar></NavBar>
@@ -604,7 +607,7 @@ class ProfileSettings extends React.Component{
 				<div className="user-container">
 					<div className="user-left">
 						<div className="user-left-img"><img id="profileImg" src={image()}/></div>
-						<div className="user-left-name"><p>{user.get("username")}</p></div>
+						<div className="user-left-name"><p>{user.get('username')}</p></div>
 						
 						<br/>
 						<br/>
@@ -690,7 +693,7 @@ class Login extends React.Component{
 
 
 
-//React.render(<Thread/>, document.body);
+//React.render(<Login></Login>, document.body);
 
 // Router 
 var ForumRouter = Parse.Router.extend ({
