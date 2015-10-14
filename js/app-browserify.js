@@ -38,7 +38,7 @@ const CommentCollection = Parse.Collection.extend({
 
 const commentlist = new CommentCollection()
 
-console.log(commentlist)
+
 
 const list = new ForumCollection()
 
@@ -74,25 +74,10 @@ $('document').ready(function() {
 }
 });
 */
-//
 
-/*
-var user = Parse.User.current(),
-			profilePhoto = user.get('image'),
-			parsePic = profilePhoto.url(),
-			webPic = "../images/profile-photo.jpg"
 
-			
-function image() {
 
-	if(profilePhoto.url()){
-		return parsePic
-	}else{
-		return webPic
-	}
 
-}
-*/
 
 // React
 
@@ -126,37 +111,42 @@ class ForumPost extends React.Component{
 		super(props)
 		this.rerender = () => this.forceUpdate()
 	}
-	_test(e){
-		//just a test to get the object id
-		e.preventDefault();
-		var model = this.props.data;
-		var link = $(this).attr('href')
-		//console.log(link)
-		console.log(this.props.data.get('content'))
-		console.log(this.props.data.id)
-		list.query = new Parse.Query(UserPost);
-		list.query.equalTo('objectId', link);
-		list.query.find({
-			success: function(results){
-				
-				
-			}, error: function(){
-
-			}
-			
-		});
-		
-			
-	}
+	
 	render() {
 		var model = this.props.data;
 		var id = model.id;
 		var hashRoute = window.location.hash;
 
 		var ash = "#threads/"+id;
+		var user = Parse.User.current(),
+					profilePhoto = user.get('image'),
+					parsePic = profilePhoto.url(),
+					webPic = "../images/profile-photo.jpg"
+
+					
+				function image() {
+
+					if(profilePhoto.url()){
+						return parsePic
+					}else{
+						return webPic
+					}
+
+				}
+				var userpost = new UserPost('UserPost')
+				var herro = model.get('user')
+				var test = herro.get('file')
+				var usert =model.user()
+				
+
+				console.log(herro)
+				console.log(usert)
+
+				//*********************need to find post image*********************************************
+
 		return (
 			<div className="forum-column">
-                <div className="user-picture"><img src={image()} /></div>
+                <div className="user-picture"><img src='' /></div>
                 <div className="forum-question">
                 	<a href={ash}  ref="x" /*onClick={(e) => this._test(e)}*/ ><h3>{model.get('title')}</h3> </a>	
                 	<p>{model.get('content')}</p>
@@ -166,8 +156,8 @@ class ForumPost extends React.Component{
             		<li className="views"><p>Views:</p><a href="#">10</a></li>
             	</ul>
             	<ul className="last-post">
-            		<li className="author">{model.get('username')}</li>
-            		<li className="date"><p>{model.get('createdAt')}</p></li>
+            		<li className="author">test{model.get('username')}</li>
+            		<li className="date">date{model.get('createdAt')}</li>
             	</ul>
             </div>
 		)
@@ -190,6 +180,23 @@ class ForumView extends React.Component {
 		PostContent.props.data.add({title: input.value})
 	}
 	render() {
+		//not the correct use of image function. connected to USer earnings wrapper. Should be updated to notification
+		var user = Parse.User.current(),
+			profilePhoto = user.get('image'),
+			parsePic = profilePhoto.url(),
+			webPic = "../images/profile-photo.jpg"
+
+			
+			function image() {
+
+				if(profilePhoto.url()){
+					return parsePic
+				}else{
+					return webPic
+				}
+
+			}
+		//         ***************************************************************************************************	
 
 		return (
 			<div>
@@ -198,7 +205,7 @@ class ForumView extends React.Component {
     	<div className="page-location"><span>Home</span></div>
     	<div className="new-thread"><a href={`#post`} > + New Thread</a></div>
     	<div className="forum-container">
-    		<div className="colum-header"><h6>Title/ Threads</h6><span>Replies</span><span>Last Post by</span></div>
+    		<div className="colum-header"><h6>Title/ Threads</h6><span>Replies</span><span>Last Post</span></div>
             	{this.props.data.map((model) => <ForumPost data={model} />)}
         </div>
 
@@ -261,7 +268,7 @@ class PostContent extends React.Component{
 							</div>
 							<div className="post-content">
 								
-									<textarea id="post-question" ref="content" cols="90" rows="12"></textarea>
+									<textarea id="post-question" ref="content" ></textarea>
 									
 								<input className="post_content_button" type="submit" value="Post"></input>
 								
@@ -283,7 +290,7 @@ class PostContent extends React.Component{
 
 }
 
-//Single Post View
+//Post Details View
 
 class Thread extends React.Component{
 	constructor(props){
@@ -310,17 +317,11 @@ class Thread extends React.Component{
 				var date = results[0].createdAt
 				var updatedAt = results[0].updatedAt
 				var id = results[0].id
+
+
 				var uimg = user.get('image')
 				var userimg = uimg.url() 
 				var backimg = "../images/profile-photo.jpg"
-
-/*
-				console.log(title)
-				console.log(content)
-				console.log(username)
-				console.log(date)
-				console.log(userimg)
-				console.log(id)*/
 
 				function postImg(){
 					if(uimg){
@@ -330,6 +331,7 @@ class Thread extends React.Component{
 
 					}
 				}
+				$('.user-picture img').attr('src', postImg())
 				$(".pv-title p").html("Thread: " + title)
 				$(".pv-user-name p").html(username)
 				//$(".pv-user-image img").html(userimg)
@@ -359,12 +361,6 @@ class Thread extends React.Component{
 		var user = Parse.User.current();
 		var	userpost = new UserPost({id:commentId});
 		var	comment = new Comment();
-/*
-		console.log(commentId)
-		console.log(commentText)
-		console.log(user)
-		console.log(userpost)	
-		console.log(comment)*/	
 
 		comment.set("content", commentText)
 		comment.set("user", user)
@@ -459,20 +455,22 @@ class CommentView extends React.Component{
 		
 	}
 	componentDidMount(){
+		 
+		var commentId = $("#pv-comment-id").val();
+		var wHash = window.location.hash.substr(9);
+		var	userpost = new UserPost({id:wHash});
+		var pi = userpost.id
 
-		//var commentId = $("#pv-comment-id").val();
-		var wHash = window.location.hash.substr(9)
-
-		//console.log(wh)
+		//console.log(Comment)
 
 		var cmmntlist = this.props.cmt
 		
-		console.log(wHash)
-		console.log(cmmntlist)
+		//console.log(wHash)
+		//console.log(cmmntlist)
 		cmmntlist.query = new Parse.Query('Comment')
-		cmmntlist.query.equalTo('objectId', wHash);
+		cmmntlist.query.equalTo('userpost', userpost);
 		//commentlist.query.include('user');
-		cmmntlist.query.include('userpost');
+		//cmmntlist.query.include('userpost');
 		cmmntlist.query.find({
 			success: function(results){
 				/*//var title = results[0].get("title")
@@ -484,10 +482,9 @@ class CommentView extends React.Component{
 
 				//console.log(username)
 				console.log(content)*/
-				var user = results
 				
-
-				console.log(user)
+			
+				//console.log(user)
 				console.log("query worked")
 			}, 
 			error: function(error){
@@ -506,6 +503,22 @@ class CommentView extends React.Component{
 		//log each id OF COMMENT VV
 		//alert(cmodel.id)
 		//console.log(cmodel.get('user'))
+		var user = Parse.User.current(),
+					profilePhoto = user.get('image'),
+					parsePic = profilePhoto.url(),
+					webPic = "../images/profile-photo.jpg"
+
+					
+				function image() {
+
+					if(profilePhoto.url()){
+						return parsePic
+					}else{
+						return webPic
+					}
+
+				}
+
 
 		return(
 			<div>
@@ -516,7 +529,7 @@ class CommentView extends React.Component{
 						<div id="comment-user-date"><p>test</p></div>
 					</div>
 					<div id="reply-container">
-						<div id="reply-text"><p>test{cmodel.get("userpost")}</p></div>
+						<div id="reply-text"><p>test</p></div>
 					</div>
 				</div>
 			</div>
@@ -559,34 +572,57 @@ class ProfileSettings extends React.Component{
 		}
 
 	}	
+	_showbttn(){
+		$('#post-form').show()
+		$('.upload-image').hide()
+	}
 
 	render() {
 		
+		var user = Parse.User.current(),
+			profilePhoto = user.get('image'),
+			parsePic = profilePhoto.url(),
+			webPic = "../images/profile-photo.jpg"
+
+			
+		function image() {
+
+			if(profilePhoto.url()){
+				return parsePic
+			}else{
+				return webPic
+			}
+
+		}
 
 		
 		return (
 			<div>
 			<NavBar></NavBar>
-			<div className="container">
+			
 			<div className="page-location"><a href="#home">Home </a> > Profile</div>
 				<div className="user-container">
 					<div className="user-left">
-						<p>{user.get("username")}</p>
-						<img id="profileImg" src={image()}/>
+						<div className="user-left-img"><img id="profileImg" src={image()}/></div>
+						<div className="user-left-name"><p>{user.get("username")}</p></div>
+						
 						<br/>
 						<br/>
-						<p>Joined: </p>
-						<p>Recent Activity: </p>
+						<div className="user-left-join"><p>Joined: </p></div>
+						<div className="user-left-recent"><p>Recent Activity: </p></div>
 					</div>
 					<div className="user-right">
+
+						<div className="upload-image" onClick={(e) => this._showbttn(e)}><p>Upload a Photo</p></div>
 						<div className="page-location">Add An Avatar</div>
 						<form id="post-form" onSubmit={(e) => this._postimage(e)}>
+							<h5>Upload an Image</h5>
 							<input id="post-file" type="file"></input>
 							<input id="file-submit" type="submit"></input>
 						</form>
 					</div>
 				</div>
-			</div>
+			
 		</div>
 		)
 	}	
