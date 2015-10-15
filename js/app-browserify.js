@@ -92,12 +92,28 @@ class NavBar extends React.Component{
 		Parse.User.logOut();
 		window.location.hash = '#login'
 	}
+	_menushow(){
+		$('.menu').click(function() {
+			if ( $('.menu ul').css('visibility') == 'hidden' ){
+			  	$('.menu ul').css('visibility','visible');
+			  }else{
+			  	$('.menu ul').css('visibility','hidden');
+			}
+		});
+  			
+	}
 	render() {
 		return (
 			<div>
 			<header>
         <ul>
-            <li className="menu" onClick={(e) => this._logout(e)}></li>
+            <li className="menu" onClick={(e) => this._menushow(e)}>
+            	<ul>
+            		<li><a href="#home">Home</a></li>
+            		<li><a  href="#profile">Settings</a></li>
+            		<li onClick={(e) => this._logout(e)}>Log Out</li>
+            	</ul>
+            </li>
             <a href="#profile"><li className="profile"></li></a>
             <li className="forum-title">Forum</li>
             <li className="user">Welcome, {Parse.User.current().get("username")}</li>
@@ -149,6 +165,7 @@ class ForumPost extends React.Component{
 				console.log(usert)*/
 
 				//*********************need to find post image*********************************************
+				//console.log(model.get('user').get('username'))
 
 		return (
 			<div className="forum-column">
@@ -163,7 +180,7 @@ class ForumPost extends React.Component{
             	</ul>
             	<ul className="last-post">
             		<li className="author">test{model.get('username')}</li>
-            		<li className="date">date{model.get('createdAt')}</li>
+            		<li className="date">{model.createdAt}</li>
             	</ul>
             </div>
 		)
@@ -263,7 +280,7 @@ class PostContent extends React.Component{
 			<div>
 				<NavBar></NavBar>
 				<div className='container'>
-					<div className="page-location"><span>Home > New Thread</span></div>
+					<div className="page-location"><span><a href="#home">Home</a> > New Thread</span></div>
 
 					<div className="post-container">
 					<div className="colum-header"><h6>Post New Thread</h6></div>
@@ -296,7 +313,7 @@ class PostContent extends React.Component{
 
 }
 
-//Post Details View
+//Details View
 
 class Thread extends React.Component{
 	constructor(props){
@@ -477,8 +494,8 @@ class CommentView extends React.Component{
 		//console.log(cmmntlist)
 		cmmntlist.query = new Parse.Query('Comment')
 		cmmntlist.query.equalTo('userpost', userpost);
-		//commentlist.query.include('user');
-		//cmmntlist.query.include('userpost');
+		commentlist.query.include('user');
+		cmmntlist.query.include('userpost');
 		cmmntlist.query.find({
 			success: function(results){
 				/*//var title = results[0].get("title")
@@ -492,7 +509,7 @@ class CommentView extends React.Component{
 				console.log(content)*/
 				
 			
-				//console.log(user)
+				console.log(results)
 				console.log("query worked")
 			}, 
 			error: function(error){
@@ -617,7 +634,7 @@ class ProfileSettings extends React.Component{
 					<div className="user-right">
 
 						<div className="upload-image" onClick={(e) => this._showbttn(e)}><p>Upload a Photo</p></div>
-						<div className="page-location">Add An Avatar</div>
+						
 						<form id="post-form" onSubmit={(e) => this._postimage(e)}>
 							<h5>Upload an Image</h5>
 							<input id="post-file" type="file"></input>
