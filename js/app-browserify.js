@@ -509,7 +509,7 @@ class CommentView extends React.Component{
 				console.log(content)*/
 				
 			
-				console.log(results)
+				//console.log(results)
 				console.log("query worked")
 			}, 
 			error: function(error){
