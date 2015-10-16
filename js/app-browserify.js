@@ -243,12 +243,17 @@ class PostContent extends React.Component{
 					</div>
 				</div>
 				<div className="user-earnings-wrapper">
-            		<h6>Seller Earnings</h6>
-           			 <div className="seller-earnings">
-                		<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjOpzej-tNCbt4HpDtscG03tj12DAIEflcW6r40p8es2gqGviT4LS1-Xa3" />
-                <p className="user">Userfjdfnfddcd@yahoo.com</p><span>Earned:</span><p className="user-amount">$<span>100</span></p>
+            
+            <div className="seller-earnings">
+                <ul>
+                	<li><a href="mailto:jestrada1622@gmail.com"><img src="../images/email.png" /></a></li>
+                	<li><a href="https://github.com/juanmestrada?tab=repositories" ><img src="../images/github.png" /></a></li>
+                	<li><a href="https://www.linkedin.com/pub/juan-estrada/101/31b/575" ><img src="../images/linkedin_logo.png" /></a></li>
+                </ul>
+                
 
             </div>
+        </div>
         </div>
 			</div>
 		)
