@@ -180,8 +180,6 @@ class ForumView extends React.Component {
                 	<li><a href="https://github.com/juanmestrada?tab=repositories" ><img src="../images/github.png" /></a></li>
                 	<li><a href="https://www.linkedin.com/pub/juan-estrada/101/31b/575" ><img src="../images/linkedin_logo.png" /></a></li>
                 </ul>
-                
-
             </div>
         </div>
     </div>
@@ -250,10 +248,7 @@ class PostContent extends React.Component{
                 	<li><a href="https://github.com/juanmestrada?tab=repositories" ><img src="../images/github.png" /></a></li>
                 	<li><a href="https://www.linkedin.com/pub/juan-estrada/101/31b/575" ><img src="../images/linkedin_logo.png" /></a></li>
                 </ul>
-                
-
             </div>
-        </div>
         </div>
 			</div>
 		)
