@@ -50,32 +50,6 @@ commentlist.query = new Parse.Query(Comment)
 
 
 
-/*
-
-
-
-/*jQuery Events*/
-/*$(window).resize(function(){
-var width = $(window).width();
-if(width >= 801){
-// Code for big screen 
-$('document').ready(function() {
-	
-});
-}
-else if(width >= 800){
-// Code for medium screen 
-}
-else if (width<= 480){
-// Code for small screen 
-$('document').ready(function() {
-
-});
-}
-});
-*/
-
-
 
 
 
@@ -139,37 +113,19 @@ class ForumPost extends React.Component{
 		var hashRoute = window.location.hash;
 
 		var ash = "#threads/"+id;
-		/*var user = Parse.User.current(),
-					profilePhoto = user.get('image'),
-					parsePic = profilePhoto.url(),*/
 
-				var	webPic = "../images/profile-photo.jpg"
+		var	webPic = "../images/profile-photo.jpg"
 
-					
-				function image() {
-
-					if(Parse.User.current().get('image')){
-						return Parse.User.current().get('image').url()
-					}else{
-						return webPic
-					}
-
-				}/*
-				var userpost = new UserPost('UserPost')
-				var herro = model.get('user')
-				var test = herro.get('file')
-				//var usert =model.user()
-				
-
-				console.log(herro)
-				console.log(usert)*/
-
-				//*********************need to find post image*********************************************
-				//console.log(model.get('user').get('username'))
-
+		function PostImg(){
+			if(model.get('image')){
+				return model.get('image').url()
+			}else {
+				return webPic
+			}
+		}
 		return (
 			<div className="forum-column">
-                <div className="user-picture"><img src='' /></div>
+                <div className="user-picture"><img src={PostImg()} /></div>
                 <div className="forum-question">
                 	<a href={ash}  ref="x" /*onClick={(e) => this._test(e)}*/ ><h3>{model.get('title')}</h3> </a>	
                 	<p>{model.get('content')}</p>
@@ -179,7 +135,7 @@ class ForumPost extends React.Component{
             		<li className="views"><p>Views:</p><a href="#">10</a></li>
             	</ul>
             	<ul className="last-post">
-            		<li className="author">test{model.get('username')}</li>
+            		<li className="author">{model.get('user').get('username')}</li>
             		<li className="date">{model.createdAt}</li>
             	</ul>
             </div>
@@ -203,24 +159,7 @@ class ForumView extends React.Component {
 		PostContent.props.data.add({title: input.value})
 	}
 	render() {
-		//not the correct use of image function. connected to USer earnings wrapper. Should be updated to notification
-		/*var user = Parse.User.current(),
-			profilePhoto = user.get('image'),
-			parsePic = profilePhoto.url(),
-			webPic = "../images/profile-photo.jpg"
-
-			
-			function image() {
-
-				if(profilePhoto.url()){
-					return parsePic
-				}else{
-					return webPic
-				}
-
-			}*/
-		//         ***************************************************************************************************	
-
+		
 		return (
 			<div>
 			<NavBar></NavBar>
@@ -234,10 +173,14 @@ class ForumView extends React.Component {
 
 
         <div className="user-earnings-wrapper">
-            <h6>Seller Earnings</h6>
+            
             <div className="seller-earnings">
-                <img src='' />
-                <p className="user">Userfjdfnfddcd@yahoo.com</p><span>Earned:</span><p className="user-amount">$<span>100</span></p>
+                <ul>
+                	<li><a href="mailto:jestrada1622@gmail.com"><img src="../images/email.png" /></a></li>
+                	<li><a href="https://github.com/juanmestrada?tab=repositories" ><img src="../images/github.png" /></a></li>
+                	<li><a href="https://www.linkedin.com/pub/juan-estrada/101/31b/575" ><img src="../images/linkedin_logo.png" /></a></li>
+                </ul>
+                
 
             </div>
         </div>
